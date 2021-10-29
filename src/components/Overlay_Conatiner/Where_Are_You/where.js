@@ -1,4 +1,4 @@
-import { Location_Pin } from "../../../svgs";
+import { LocationPin } from "../../../svgs";
 import { ButtonBlue, ButtonGrey } from "../../UI/Button/button";
 import classes from "./where.module.css";
 
@@ -6,7 +6,7 @@ const Where = () => {
   return (
     <div className={classes.main}>
       <div className={classes.pin}>
-        <Location_Pin />
+        <LocationPin />
       </div>
       <h3>Where are you?</h3>
       <p>

@@ -1,4 +1,4 @@
-export const Location_Pin = () => (
+export const LocationPin = () => (
   <svg
     width="59"
     height="95"

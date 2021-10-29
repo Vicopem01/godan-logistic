@@ -1,0 +1,16 @@
+.btn {
+  display: block;
+  width: 80%;
+  border: none;
+  border-radius: 10px;
+  margin: auto;
+  padding: 15px 0;
+}
+.btn_grey {
+  background: rgba(173, 203, 227, 0.2);
+  color: #000000;
+}
+.btn_blue {
+  background: #4777f7;
+  color: #fff;
+}

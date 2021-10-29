@@ -1,0 +1,11 @@
+.menu{
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    background: #fff;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -10,7 +10,7 @@ const Landing = () => {
   return (
     <div>
       <Menu onClick={() => setSideBar(true)} />
-      <SideBar sideBar={sideBar} />
+      <SideBar sideBar={sideBar} cancelSidebar={() => setSideBar(false)} />
       <Map />
       <Container />
     </div>

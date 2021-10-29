@@ -12,21 +12,26 @@
   width: 100% !important;
 }
 .main {
-  transition: visibility ease-in-out 1s, opacity ease-in-out 0.5;
+  transition: width 0.4s linear, visibility 0.2s ease-in-out,
+    opacity 0.7s ease-in-out;
   height: 100vh;
   background: #fff;
   width: 0%;
   border-radius: 0px 20px 20px 0px;
   visibility: hidden;
-  /* opacity: 0; */
+  opacity: 0;
   position: relative;
 }
 .visible > div {
-  /* opacity: 1; */
+  opacity: 1;
   visibility: visible;
   width: 80%;
 }
-.subMain {
+.subMain > img {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  width: 30px;
 }
 .main span {
   width: 100%;
@@ -54,8 +59,8 @@
 .profile img {
   margin-right: 15px;
 }
-.profile h4{
-    margin-bottom: 5px;
+.profile h4 {
+  margin-bottom: 5px;
 }
 .btn {
   position: absolute;

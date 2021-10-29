@@ -1,7 +1,7 @@
 export const LocationPin = () => (
   <svg
     width="59"
-    height="95"
+    height="80"
     viewBox="0 0 59 95"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

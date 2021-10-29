@@ -1,29 +1,29 @@
-.main{
-    padding: 2rem;
-    text-align: center;
+.main {
+  padding: 2rem 2rem 1rem 2rem;
+  text-align: center;
 }
-.main h3{
-    font-weight: 600;
+.main h3 {
+  font-weight: 600;
 }
-.main p{
-    margin: 10px 0;
+.main p {
+  margin: 20px 0;
 }
-.btn_div > button:first-of-type{
-    margin-bottom: 20px;
+.btn_div > button:first-of-type {
+  margin-bottom: 10px;
 }
-.pin{
-    animation: animate 0.5s infinite;
+.pin {
+  animation: animate 0.5s infinite;
 }
 @keyframes animate {
-    0% {
-      transform: translateY(0px);
-    }
-
-    50% {
-      transform: translateY(-15px);
-    }
-
-    100% {
-      transform: translateY(0px);
-    }
+  0% {
+    transform: translateY(0px);
   }
+
+  50% {
+    transform: translateY(-15px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}

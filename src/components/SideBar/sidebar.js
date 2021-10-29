@@ -4,13 +4,15 @@ import Caution from "../../assets/images/sidebar/caution.jpg";
 import DeliveryBike from "../../assets/images/sidebar/delivery-bike.jpg";
 import Tag from "../../assets/images/sidebar/tag.jpg";
 import Wallet from "../../assets/images/sidebar/wallet.jpg";
+import Cancel from "../../assets/images/sidebar/cancel.svg";
 import { ButtonBlue } from "../UI/Button/button";
 
-const SideBar = ({ sideBar }) => {
+const SideBar = ({ sideBar, cancelSidebar }) => {
   return (
     <div className={`${classes.container} ${sideBar && classes.visible}`}>
       <div className={classes.main}>
         <div className={classes.subMain}>
+          <img src={Cancel} alt="" onClick={cancelSidebar}/>
           <div className={classes.profile}>
             <img src={ProfilePicture} alt="" />
             <div>

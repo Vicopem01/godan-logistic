@@ -9,11 +9,11 @@ const Destination = () => {
   useEffect(async () => {
     const lat = localStorage.getItem("latitude");
     const lng = localStorage.getItem("longitude");
-    Geocode.setApiKey("AIzaSyDrGNEbrjgK-a0HhOmQpveIOc-2S0GJhSs");
+    Geocode.setApiKey(process.env.REACT_APP_MAP_API_KEY);
     Geocode.setLanguage("en");
     Geocode.setRegion("ng");
     // ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, APPROXIMATE are the accepted values.
-    Geocode.setLocationType("ROOFTOP");
+    // Geocode.setLocationType("ROOFTOP");
     Geocode.enableDebug();
     await Geocode.fromLatLng(lat, lng).then(
       (response) => {

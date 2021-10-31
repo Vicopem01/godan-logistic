@@ -26,7 +26,7 @@ const SimpleMap = () => {
       maxZoom: 18,
 
       mapTypeControl: true,
-      mapTypeId: maps.MapTypeId.SATELLITE,
+    //   mapTypeId: maps.MapTypeId.SATELLITE,
       mapTypeControlOptions: {
         style: maps.MapTypeControlStyle.HORIZONTAL_BAR,
         position: maps.ControlPosition.BOTTOM_CENTER,

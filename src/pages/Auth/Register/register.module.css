@@ -1,0 +1,45 @@
+.main {
+  width: 90%;
+  margin: 10px auto;
+  height: 100vh;
+}
+
+.topDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+.form input {
+  border: none;
+  padding: 15px 10px;
+  font-size: 14px;
+}
+.borderBottom {
+  width: 100%;
+  height: 1px;
+  background: #c4c4c4;
+  display: block;
+}
+.telephone {
+  display: flex;
+  align-items: center;
+}
+.telephone label {
+  border-right: 1px solid #c4c4c4;
+  padding-right: 10px;
+}
+.names {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.names div {
+  width: 1px;
+  height: 50px;
+  background: #c4c4c4;
+  display: block;
+}
+.names input {
+  width: 45%;
+}

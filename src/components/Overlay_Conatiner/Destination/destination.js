@@ -3,6 +3,11 @@ import Geocode from "react-geocode";
 import Input from "../../UI/Input/input";
 import progressLine from "../../../assets/images/destination/progressLine.svg";
 import { useEffect, useState } from "react";
+import AutoComplete from "../../PlacesAutoComplete/autocomplete";
+
+// import GooglePlacesAutocomplete, {
+//   geocodeByLatLng,
+// } from "react-google-places-autocomplete";
 
 const Destination = () => {
   const [inputValue, setInputValue] = useState("");
@@ -18,7 +23,6 @@ const Destination = () => {
     await Geocode.fromLatLng(lat, lng).then(
       (response) => {
         const address = response.results[0].formatted_address;
-        console.log(address);
         setInputValue(address);
       },
       (error) => {
@@ -35,6 +39,7 @@ const Destination = () => {
         <img src={progressLine} alt="progress" />
         <Input placeholder="START" value={inputValue} />
         <br />
+        <AutoComplete />
         <Input placeholder="END" />
       </div>
     </div>

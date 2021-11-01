@@ -6,41 +6,55 @@ import Tag from "../../assets/images/sidebar/tag.jpg";
 import Wallet from "../../assets/images/sidebar/wallet.jpg";
 import Cancel from "../../assets/images/sidebar/cancel.svg";
 import { ButtonBlue } from "../UI/Button/button";
+import { Link } from "react-router-dom";
 
 const SideBar = ({ sideBar, cancelSidebar }) => {
+  const authentication = localStorage.getItem("token");
+
   return (
     <div className={`${classes.container} ${sideBar && classes.visible}`}>
       <div className={classes.main}>
         <div className={classes.subMain}>
-          <img src={Cancel} alt="" onClick={cancelSidebar}/>
+          <img src={Cancel} alt="" onClick={cancelSidebar} />
           <div className={classes.profile}>
             <img src={ProfilePicture} alt="" />
-            <div>
-              <h4>Ogunjobi Victor</h4>
-              <p>View Profile</p>
-            </div>
+            {authentication && (
+              <div>
+                <h4>Ogunjobi Victor</h4>
+                <p>View Profile</p>
+              </div>
+            )}
+            {!authentication && (
+              <div>
+                <h4>User</h4>
+                <Link to="/register">Sign in to continue</Link>
+              </div>
+            )}
           </div>
           <span></span>
-          <div className={classes.links}>
-            <div>
-              <img src={Wallet} alt="" />
-              <p>Payment</p>
+          {authentication && (
+            <div className={classes.links}>
+              <div>
+                <img src={Wallet} alt="" />
+                <p>Payment</p>
+              </div>
+              <div>
+                <img src={Tag} alt="" />
+                <p>Promotions</p>
+              </div>
+              <div>
+                <img src={DeliveryBike} alt="" />
+                <p>Delivery History</p>
+              </div>
+              <div>
+                <img src={Caution} alt="" />
+                <p>About Us</p>
+              </div>
             </div>
-            <div>
-              <img src={Tag} alt="" />
-              <p>Promotions</p>
-            </div>
-            <div>
-              <img src={DeliveryBike} alt="" />
-              <p>Delivery History</p>
-            </div>
-            <div>
-              <img src={Caution} alt="" />
-              <p>About Us</p>
-            </div>
-          </div>
+          )}
           <div className={classes.btn}>
-            <ButtonBlue> Become a rider</ButtonBlue>
+            {authentication && <ButtonBlue> Become a rider</ButtonBlue>}
+            {!authentication && <ButtonBlue>Sign in to continue</ButtonBlue>}
           </div>
         </div>
       </div>

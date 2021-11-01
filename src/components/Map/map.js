@@ -26,7 +26,7 @@ const SimpleMap = () => {
       maxZoom: 18,
 
       mapTypeControl: true,
-    //   mapTypeId: maps.MapTypeId.SATELLITE,
+      //   mapTypeId: maps.MapTypeId.SATELLITE,
       mapTypeControlOptions: {
         style: maps.MapTypeControlStyle.HORIZONTAL_BAR,
         position: maps.ControlPosition.BOTTOM_CENTER,
@@ -43,10 +43,10 @@ const SimpleMap = () => {
   };
   const defaultProps = {
     center: {
-      lat: 7.0,
-      lng: 3.6833306,
+      lat: 6.88398,
+      lng: 3.670465,
     },
-    zoom: 17,
+    zoom: 11,
   };
 
   //   render() {

@@ -1,12 +1,15 @@
+import { Switch, Route } from "react-router-dom";
 import Landing from "./pages/Landing/landing";
+import Register from "./pages/Auth/Register/register";
 
-const App=()=>{
-  console.log(process.env.REACT_APP_MAP_API_KEY)
-
-  return(
+const App = () => {
+  return (
     <>
-    <Landing/>
+      <Switch>
+        <Route path="/" exact component={Landing} />
+        <Route path="/register" exact component={Register} />
+      </Switch>
     </>
-  )
-}
+  );
+};
 export default App;

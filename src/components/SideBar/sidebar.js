@@ -6,9 +6,9 @@ import Tag from "../../assets/images/sidebar/tag.jpg";
 import Wallet from "../../assets/images/sidebar/wallet.jpg";
 import Cancel from "../../assets/images/sidebar/cancel.svg";
 import { ButtonBlue } from "../UI/Button/button";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-const SideBar = ({ sideBar, cancelSidebar }) => {
+const SideBar = ({ sideBar, cancelSidebar, history }) => {
   const authentication = localStorage.getItem("token");
 
   return (
@@ -54,11 +54,11 @@ const SideBar = ({ sideBar, cancelSidebar }) => {
           )}
           <div className={classes.btn}>
             {authentication && <ButtonBlue> Become a rider</ButtonBlue>}
-            {!authentication && <ButtonBlue>Sign in to continue</ButtonBlue>}
+            {!authentication && <ButtonBlue onClick={()=>history.push("/login")}>Sign in to continue</ButtonBlue>}
           </div>
         </div>
       </div>
     </div>
   );
 };
-export default SideBar;
+export default withRouter(SideBar);

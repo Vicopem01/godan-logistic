@@ -11,3 +11,9 @@ a:visited {
   color: inherit;
   text-decoration: none;
 }
+label {
+  font-size: 14px;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  display: block;
+}

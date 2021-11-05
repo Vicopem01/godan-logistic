@@ -1,0 +1,54 @@
+.main {
+    width: 90%;
+    margin: 10px auto 8rem auto;
+  }
+  .main input {
+    width: 90%;
+    display: block;
+    margin: auto;
+    padding: 14px 10px 14px 30px;
+    border: 1px solid rgba(173, 203, 227, 0.5);
+    border-radius: 10px;
+  }
+  .main input:focus {
+    outline: 1px solid #407bff;
+  }
+  .main form button {
+    margin: 25px auto;
+  }
+  .password {
+    position: relative;
+  }
+  .password img {
+    position: absolute;
+    top: 15px;
+    right: 38px;
+  }
+  .main a {
+    color: #407bff;
+    text-decoration: underline;
+  }
+  .line {
+    display: flex;
+    align-items: center;
+  }
+  .line span {
+    height: 2px;
+    width: 45%;
+    background: #c4c4c4;
+  }
+  .line p {
+    font-size: 12px;
+    color: #222222;
+    padding: 0px 5px;
+  }
+  .google {
+    width: 90%;
+    display: block;
+    background: none;
+    margin: auto;
+    border: 0.710719px solid #12082d;
+    border-radius: 7.10719px;
+    padding: 12px;
+  }
+  

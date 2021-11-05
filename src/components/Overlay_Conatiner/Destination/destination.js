@@ -1,6 +1,5 @@
 import classes from "./destination.module.css";
 import Geocode from "react-geocode";
-import Input from "../../UI/Input/input";
 import progressLine from "../../../assets/images/destination/progressLine.svg";
 import { useEffect, useState } from "react";
 import AutoComplete from "../../PlacesAutoComplete/autocomplete";
@@ -19,7 +18,7 @@ const Destination = () => {
     Geocode.setRegion("ng");
     // ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, APPROXIMATE are the accepted values.
     // Geocode.setLocationType("ROOFTOP");
-    Geocode.enableDebug();
+    Geocode.enableDebug();  
     await Geocode.fromLatLng(lat, lng).then(
       (response) => {
         const address = response.results[0].formatted_address;
@@ -37,10 +36,10 @@ const Destination = () => {
       <div className={classes.main}>
         <h3 className="medium-text medium-margin">Select destination</h3>
         <img src={progressLine} alt="progress" />
-        <Input placeholder="START" value={inputValue} />
+        <input placeholder="START" value={inputValue} />
         <br />
         <AutoComplete />
-        <Input placeholder="END" />
+        <input placeholder="END" />
       </div>
     </div>
   );

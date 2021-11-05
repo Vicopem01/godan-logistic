@@ -3,5 +3,16 @@
 }
 .medium-text {
   font-size: 16px;
+}
+.medium-weight{
   font-weight: 600;
+}
+.center-text {
+  text-align: center;
+}
+.left-text {
+  text-align: left;
+}
+.right-text {
+  text-align: right;
 }

@@ -10,7 +10,10 @@ import { Link, withRouter } from "react-router-dom";
 
 const SideBar = ({ sideBar, cancelSidebar, history }) => {
   const authentication = localStorage.getItem("token");
-
+  const handlelogout = () => {
+    localStorage.removeItem("token");
+    window.location.reload()
+  };
   return (
     <div className={`${classes.container} ${sideBar && classes.visible}`}>
       <div className={classes.main}>
@@ -53,8 +56,14 @@ const SideBar = ({ sideBar, cancelSidebar, history }) => {
             </div>
           )}
           <div className={classes.btn}>
-            {authentication && <ButtonBlue> Become a rider</ButtonBlue>}
-            {!authentication && <ButtonBlue onClick={()=>history.push("/login")}>Sign in to continue</ButtonBlue>}
+            {authentication && (
+              <ButtonBlue onClick={handlelogout}>Log Out</ButtonBlue>
+            )}
+            {!authentication && (
+              <ButtonBlue onClick={() => history.push("/login")}>
+                Sign in to continue
+              </ButtonBlue>
+            )}
           </div>
         </div>
       </div>

@@ -2,50 +2,61 @@ import classes from "../auth.module.css";
 import EyeShow from "../../../assets/images/authentication/eyeShow.svg";
 import { ButtonBlue } from "../../../components/UI/Button/button";
 import { Link } from "react-router-dom";
-import { useState } from "react";
-import Error from "../../../components/ErrorMessage/error";
+import { useState, useEffect } from "react";
 import { emailCheck } from "../../../services/functions";
+import { toast } from "react-toastify";
+import ToastMessage from "../../../components/Toast/toast";
+import Loader from "../../../components/UI/Loader/loader";
+import { login } from "../../../services/apiCalls";
 
-const Login = () => {
+const Login = ({ history }) => {
   const [password, showPassword] = useState(true);
+  const [loader, setLoader] = useState(false);
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
-  const [show1, setShow1] = useState(false);
-  const [show2, setShow2] = useState(false);
-  const [show3, setShow3] = useState(false);
-  const handleLogin = () => {
-    setShow1(false);
-    setShow2(false);
-    setShow3(false);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+  const handleLogin = async (evt) => {
+    evt.preventDefault();
     if (mail === "" || pass === "") {
-      setShow1(true);
+      toast.error(
+        <ToastMessage
+          text="Error"
+          message="Email Address and Password required"
+        />
+      );
     } else {
       if (!emailCheck(mail)) {
-        setShow2(true);
-      }else{
-        let data={
-          
+        toast.error(
+          <ToastMessage text="Error" message="Invalid Email Address" />
+        );
+      } else {
+        if (pass.length < 6) {
+          toast.error(
+            <ToastMessage text="Error" message="6 charater password mininum" />
+          );
+        } else {
+          let data = {
+            email: mail,
+            password: pass,
+          };
+          try {
+            setLoader(true);
+            const res  = await login(data);
+            console.log(res);
+            localStorage.setItem('token', res.data.data.token);
+            history.push("/");
+          } catch (error) {
+            setLoader(false);
+            toast.error(<ToastMessage text="Error" message={error.message} />);
+          }
         }
       }
     }
   };
   return (
     <main className={classes.main}>
-      <Error
-        show={show1}
-        setShow={() => setShow1(false)}
-        text="Error, please fill all fields"
-      />
-      <Error
-        show={show2}
-        setShow={() => setShow2(false)}
-        text="Error, invalid email address"
-      />
-      <Error
-        show={show2}
-        setShow={() => setShow2(false)}
-        text="Error, invalid email address"
-      />
       <div>
         <p className="medium-text medium-margin medium-weight">Welcome Back</p>
         <p className="medium-text">Login your Godan account</p>
@@ -72,7 +83,14 @@ const Login = () => {
             className={classes.imgEnd}
           />
         </div>
-        <ButtonBlue onClick={handleLogin}>Login</ButtonBlue>
+        <ButtonBlue onClick={handleLogin}>
+          Login
+          {loader && (
+            <div>
+              <Loader />
+            </div>
+          )}
+        </ButtonBlue>
         <br />
         <div className={classes.line}>
           <span></span>

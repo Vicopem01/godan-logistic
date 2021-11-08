@@ -2,37 +2,31 @@ import classes from "../auth.module.css";
 import { ButtonBlue } from "../../../components/UI/Button/button";
 import { Link } from "react-router-dom";
 import EyeShow from "../../../assets/images/authentication/eyeShow.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import At from "../../../assets/images/authentication/at.svg";
 import Padlock from "../../../assets/images/authentication/padlock.svg";
 import Avatar from "../../../assets/images/authentication/avatar.svg";
 import Tel from "../../../assets/images/authentication/tel.svg";
 import Loader from "../../../components/UI/Loader/loader";
-import Error from "../../../components/ErrorMessage/error";
 import { emailCheck, phoneNumberCheck } from "../../../services/functions";
 import { registerNewUser } from "../../../services/apiCalls";
+import { toast } from "react-toastify";
+import ToastMessage from "../../../components/Toast/toast";
 
 const Register = ({ history }) => {
   const [password, showPassword] = useState(true);
   const [loader, showLoader] = useState(false);
-  const [show, setShow] = useState(false);
-  const [show1, setShow1] = useState(false);
-  const [show2, setShow2] = useState(false);
-  const [show3, setShow3] = useState(false);
-  const [show4, setShow4] = useState(false);
   const [confirmPassword, showConfirmPassword] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
   const [cpass, setCpass] = useState("");
   const [phone, setPhone] = useState("");
-  const [errormsg, setErrorMsg] = useState("");
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const signup = async (evt) => {
     evt.preventDefault();
-    setShow(false);
-    setShow1(false);
-    setShow2(false);
-    setShow3(false);
     if (
       name === "" ||
       email === "" ||
@@ -40,68 +34,63 @@ const Register = ({ history }) => {
       cpass === "" ||
       phone === ""
     ) {
-      setShow(true);
+      toast.error(
+        <ToastMessage text="Error" message="Please fill all fields" />
+      );
     } else {
       if (!emailCheck(email)) {
-        setShow1(true);
+        toast.error(
+          <ToastMessage text="Error" message="Invalid Email Address" />
+        );
       } else {
         if (!phoneNumberCheck(phone)) {
-          setShow2(true);
+          toast.error(
+            <ToastMessage text="Error" message="Invalid Phone Number" />
+          );
         } else {
-          if (pass !== cpass) {
-            setShow3(true);
+          if (pass.length < 6) {
+            toast.error(
+              <ToastMessage
+                text="Error"
+                message="Password should be at least 6 characters"
+              />
+            );
           } else {
-            showLoader(true);
-            let data = {
-              fullName: name,
-              email: email,
-              password: pass,
-              confirm_password: cpass,
-              phoneNumber: phone,
-            };
-            try {
-              const res = await registerNewUser(data);
-              console.log(res);
-
-            } catch (error) {
-              showLoader(false);
-              setErrorMsg(error.message);
-              setShow4(true);
+            if (pass !== cpass) {
+              toast.error(
+                <ToastMessage text="Error" message="Passwords do not match" />
+              );
+            } else {
+              showLoader(true);
+              let data = {
+                fullName: name,
+                email: email,
+                password: pass,
+                confirm_password: cpass,
+                phoneNumber: phone,
+              };
+              try {
+                const res = await registerNewUser(data);
+                console.log(res);
+                toast.success(
+                  "Account created sucessfully, check your mail for verification"
+                  );
+                  history.push("/login");
+              } catch (error) {
+                showLoader(false);
+                toast.error(
+                  <ToastMessage text="Error" message={error.message} />
+                );
+              }
             }
           }
         }
       }
     }
-    // history.push("/verify-mail");
   };
 
   return (
     <main className={classes.main}>
-      <Error
-        show={show}
-        setShow={() => setShow(false)}
-        text="Error, please fill all fields"
-      />
-      <Error
-        show={show1}
-        setShow={() => setShow1(false)}
-        text="Error, invalid email address"
-      />
-      <Error
-        show={show2}
-        setShow={() => setShow2(false)}
-        text="Error, invalid phone number"
-      />
-      <Error
-        show={show3}
-        setShow={() => setShow3(false)}
-        text="Error, passwords do not match"
-      />
-      <Error
-        show={show4}
-        setShow={() => setShow4(false)}
-        text={` Error ${errormsg}`}
-      />
       <div>
         <p className="medium-text medium-margin medium-weight">
           Create an Account

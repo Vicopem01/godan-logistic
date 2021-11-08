@@ -4,3 +4,8 @@
 .medium-margin {
   margin: 30px 0;
 }
+.center-flex{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

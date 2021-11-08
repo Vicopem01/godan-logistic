@@ -1,4 +1,4 @@
-import classes from "./landing.module.css";
+// import classes from "./landing.module.css";
 import Map from "../../components/Map/map";
 import Menu from "../../components/Menu/menu";
 import Container from "../../components/Overlay_Conatiner/container";

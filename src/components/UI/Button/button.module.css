@@ -5,6 +5,7 @@
   border-radius: 10px;
   margin: auto;
   padding: 15px 0;
+  position: relative;
 }
 .btn_grey {
   background: rgba(173, 203, 227, 0.2);

@@ -1,6 +1,7 @@
 .btn {
   display: block;
   width: 90%;
+  height: 50px;
   border: none;
   border-radius: 10px;
   margin: auto;
@@ -13,5 +14,9 @@
 }
 .btn_blue {
   background: #4777f7;
-  color: #fff;
+  color: #ffffff;
+}
+.btn_white {
+  background: #ffffff;
+  color: #222222;
 }

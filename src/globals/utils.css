@@ -1,8 +1,14 @@
 .small-margin {
   margin: 5px 0;
 }
+.small-padding {
+  padding: 5px 0;
+}
 .medium-margin {
   margin: 30px 0;
+}
+.medium-padding {
+  padding: 30px 0;
 }
 .center-flex{
   display: flex;

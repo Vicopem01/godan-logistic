@@ -1,27 +1,44 @@
 .main {
+  background: #407bff;
+  color: #fff;
+  width: 100vw;
+  height: 100vh;
+}
+.main > div {
+  margin: 0px auto 8rem auto;
   width: 90%;
-  margin: 10px auto 8rem auto;
 }
 .main input {
   width: 90%;
-  display: block;
+  background: transparent;
   margin: auto;
-  padding: 14px 10px 10px 45px;
-  border: 1px solid rgba(173, 203, 227, 0.5);
+  padding: 10px;
+  border: none;
   border-radius: 10px;
+  color: #ffffff;
+  font-size: 16px;
+}
+.main input::placeholder {
+  color: #F8F6E7;
+}
+.main input:focus {
+  outline: none;
 }
 .main label {
-  width: 90%;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
-.main input:focus {
-  outline: 1px solid #407bff;
+.flexLabel {
+  display: flex;
+  border-bottom: 1px solid #f8f6e7;
 }
-.main button > div {
-  position: absolute;
-  top: 5px;
-  right: 30px;
+.flexLabel span {
+  background: #f8f6e7;
+  height: inherit;
+  display: block;
+  width: 2px;
+  margin: 0 18px;
 }
 .main form button {
   margin: 25px auto;
@@ -41,8 +58,8 @@
   left: 38px;
 }
 .main a {
-  color: #407bff;
   text-decoration: underline;
+  font-weight: bolder;
 }
 .line {
   display: flex;
@@ -57,15 +74,14 @@
 }
 .line p {
   font-size: 12px;
-  color: #222222;
   padding: 0px 5px;
 }
 .google {
   width: 90%;
   display: block;
-  background: none;
+  background: #ffffff;
   margin: auto;
-  border: 0.710719px solid #12082d;
+  border: none;
   border-radius: 7.10719px;
   padding: 12px;
 }

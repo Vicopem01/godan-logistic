@@ -1,0 +1,25 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../../../assets/images/landing/bg.png");
+  background-repeat: no-repeat;
+  background-size: 120%;
+  background-position: top;
+  position: relative;
+}
+.container > div {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.imgDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container p {
+  text-align: center;
+  margin: 20px 0;
+  color: #fff;
+}

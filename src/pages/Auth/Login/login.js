@@ -1,4 +1,4 @@
-import classes from "../auth.module.css";
+import classes from "./login.module.css";
 import EyeShow from "../../../assets/images/authentication/eyeShow.svg";
 import { ButtonWhite } from "../../../components/UI/Button/button";
 import { Link } from "react-router-dom";
@@ -9,8 +9,7 @@ import ToastMessage from "../../../components/Toast/toast";
 import Loader from "../../../components/UI/Loader/loader";
 import { login } from "../../../services/apiCalls";
 import Logo from "../../../assets/images/authentication/godan_logo.svg";
-import Mail from "../../../assets/images/authentication/mail.svg";
-import Padlock from "../../../assets/images/authentication/padlock.svg";
+import { Mail, Padlock } from "../../../constant";
 
 const Login = ({ history }) => {
   const [password, showPassword] = useState(true);
@@ -68,9 +67,9 @@ const Login = ({ history }) => {
           <p className="medium-text  medium-weight">Welcome Back</p>
           <p className="medium-text">Login your Godan account</p>
         </div>
-        <form  className="medium-padding">
+        <form className="medium-padding">
           <label htmlFor="email" className={classes.flexLabel}>
-            <img src={Mail} alt="e-mail" />
+            <Mail stroke="#ffffff" />
             <span></span>
             <input
               type="email"
@@ -80,7 +79,7 @@ const Login = ({ history }) => {
             />
           </label>
           <label htmlFor="password" className={classes.flexLabel}>
-            <img src={Padlock} alt="password" />
+            <Padlock stroke="#ffffff" />
             <span></span>
             <input
               type="password"
@@ -92,13 +91,13 @@ const Login = ({ history }) => {
           <ButtonWhite onClick={handleLogin} className="center-flex">
             {loader ? <Loader /> : "Login"}
           </ButtonWhite>
-          <div className={classes.line}>
+          {/* <div className={classes.line}>
             <span></span>
             <p>or</p>
             <span></span>
           </div>
-          <button className={classes.google}>Sign up with Google</button>
-          <p className="small-text center-text medium-margin">
+          <button className={classes.google}>Sign up with Google</button> */}
+          <p className="medium-text center-text medium-margin">
             Don't have an account? <Link to="/register">Create Account</Link>
           </p>
         </form>

@@ -1,4 +1,4 @@
-import { baseUrl } from "../base/baseUrl";
+import { baseUrl } from "../axios/baseUrl";
 import axios from "axios";
 
 export const registerNewUser = async (data) => {
@@ -13,6 +13,26 @@ export const login = async (data) => {
   const response = await axios({
     method: "POST",
     url: `${baseUrl}/user/auth/login`,
+    data: data,
+  });
+  return response;
+};
+
+export const createNewOrder = async (data) => {
+  const response = await axios({
+    method: "POST",
+    url: `${baseUrl}/user/auth/booking`,
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+    data: data,
+  });
+  return response;
+};
+
+export const getAllAvailableRiders = async (data) => {
+  const response = await axios({
+    method: "GET",
+    url: `${baseUrl}/user/auth/availabe-riders`,
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
     data: data,
   });
   return response;

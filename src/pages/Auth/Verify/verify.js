@@ -1,5 +1,5 @@
-import classes from "../auth.module.css";
-import Mail from "../../../assets/images/authentication/mail.svg";
+import classes from "./verify.module.css";
+// import Mail from "../../../assets/images/authentication/mail.svg";
 import { ButtonBlue } from "../../../components/UI/Button/button";
 
 const Verify = ({ history }) => {
@@ -10,7 +10,7 @@ const Verify = ({ history }) => {
     <main className={classes.main}>
       <div className={classes.center}>
         <div className="center-flex">
-          <img src={Mail} alt="" />
+          {/* <img src={Mail} alt="" /> */}
         </div>
         <p className="center-text small-text medium-margin">
           Account created successfully.

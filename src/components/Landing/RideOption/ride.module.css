@@ -1,0 +1,68 @@
+.destination {
+  width: 100%;
+  box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 10px 10px 0px 0px;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  z-index: 1;
+  background: #fff;
+  color: #222222;
+}
+.destination > span:first-of-type {
+  background: rgba(71, 119, 247, 0.2);
+  border-radius: 20px;
+  width: 60%;
+  margin: 20px auto;
+  display: block;
+  height: 7px;
+}
+.destination > p {
+  text-align: center;
+  margin: 10px 0;
+  font-size: 13px;
+}
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  margin: 15px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+.options div,
+.payment div {
+  display: flex;
+  align-items: center;
+}
+.options div p,
+.payment p {
+  margin-left: 30px;
+}
+.bg {
+  background: #407bff;
+  color: #fff;
+}
+.bg svg path {
+  fill: #ffff;
+}
+.line {
+  display: block;
+  width: 100%;
+  margin: auto;
+  background: rgba(137, 138, 141, 0.3);
+  height: 2px;
+}
+.payment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+.payment p {
+  font-size: 13px;
+  font-weight: 400;
+}

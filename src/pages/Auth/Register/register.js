@@ -1,12 +1,9 @@
-import classes from "../auth.module.css";
+import classes from "./register.module.css";
 import { ButtonBlue } from "../../../components/UI/Button/button";
 import { Link } from "react-router-dom";
 import EyeShow from "../../../assets/images/authentication/eyeShow.svg";
 import { useState, useEffect } from "react";
-import At from "../../../assets/images/authentication/at.svg";
-import Padlock from "../../../assets/images/authentication/padlock.svg";
-import Avatar from "../../../assets/images/authentication/avatar.svg";
-import Tel from "../../../assets/images/authentication/tel.svg";
+import { Avatar, Mail, Tel, Padlock } from "../../../constant";
 import Loader from "../../../components/UI/Loader/loader";
 import { emailCheck, phoneNumberCheck } from "../../../services/functions";
 import { registerNewUser } from "../../../services/apiCalls";
@@ -16,39 +13,42 @@ import ToastMessage from "../../../components/Toast/toast";
 const Register = ({ history }) => {
   const [password, showPassword] = useState(true);
   const [loader, showLoader] = useState(false);
+  const [focus, setFocus] = useState(0);
   const [confirmPassword, showConfirmPassword] = useState(true);
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-  const [cpass, setCpass] = useState("");
-  const [phone, setPhone] = useState("");
+  const [data, setData] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    confirm_password: "",
+    phoneNumber: "",
+  });
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const signup = async (evt) => {
     evt.preventDefault();
     if (
-      name === "" ||
-      email === "" ||
-      pass === "" ||
-      cpass === "" ||
-      phone === ""
+      data.fullName === "" ||
+      data.email === "" ||
+      data.password === "" ||
+      data.confirm_password === "" ||
+      data.phoneNumber === ""
     ) {
       toast.error(
         <ToastMessage text="Error" message="Please fill all fields" />
       );
     } else {
-      if (!emailCheck(email)) {
+      if (!emailCheck(data.email)) {
         toast.error(
           <ToastMessage text="Error" message="Invalid Email Address" />
         );
       } else {
-        if (!phoneNumberCheck(phone)) {
+        if (!phoneNumberCheck(data.phoneNumber)) {
           toast.error(
             <ToastMessage text="Error" message="Invalid Phone Number" />
           );
         } else {
-          if (pass.length < 6) {
+          if (data.password.length < 6) {
             toast.error(
               <ToastMessage
                 text="Error"
@@ -56,26 +56,19 @@ const Register = ({ history }) => {
               />
             );
           } else {
-            if (pass !== cpass) {
+            if (data.password !== data.confirm_password) {
               toast.error(
                 <ToastMessage text="Error" message="Passwords do not match" />
               );
             } else {
               showLoader(true);
-              let data = {
-                fullName: name,
-                email: email,
-                password: pass,
-                confirm_password: cpass,
-                phoneNumber: phone,
-              };
               try {
                 const res = await registerNewUser(data);
                 console.log(res);
                 toast.success(
                   "Account created sucessfully, check your mail for verification"
-                  );
-                  history.push("/login");
+                );
+                history.push("/login");
               } catch (error) {
                 showLoader(false);
                 toast.error(
@@ -92,50 +85,88 @@ const Register = ({ history }) => {
   return (
     <main className={classes.main}>
       <div>
-        <p className="medium-text medium-margin medium-weight">
-          Create an Account
-        </p>
+        <p className="medium-text medium-weight">Create your account</p>
       </div>
       <form>
-        <label htmlFor="fullname">Full Name</label>
-        <div className={classes.password}>
-          <img src={Avatar} alt="" className={classes.imgStart} />
+        <label
+          htmlFor="fullname"
+          className={`${classes.label} ${focus === 1 ? classes.show2 : ""}`}
+        >
+          <div>
+            <Avatar />
+          </div>
           <input
             placeholder="Firstname Lastname"
             id="fullname"
-            onChange={(e) => setName(e.target.value)}
+            onFocus={() => setFocus(1)}
+            onChange={(e) =>
+              setData((prevState) => ({
+                ...prevState,
+                fullName: e.target.value,
+              }))
+            }
           />
-        </div>
+        </label>
 
-        <label htmlFor="email">Email Address </label>
-        <div className={classes.password}>
-          <img src={At} alt="" className={classes.imgStart} />
+        <label
+          htmlFor="email"
+          className={`${classes.label} ${focus === 2 ? classes.show : ""}`}
+        >
+          <div>
+            <Mail stroke="#9DA8B6" />
+          </div>
           <input
             placeholder="user@email.com"
             id="email"
-            onChange={(e) => setEmail(e.target.value)}
+            onFocus={() => setFocus(2)}
+            onChange={(e) =>
+              setData((prevState) => ({
+                ...prevState,
+                email: e.target.value,
+              }))
+            }
           />
-        </div>
+        </label>
 
-        <label htmlFor="telephone">Phone Number </label>
-        <div className={classes.password}>
-          <img src={Tel} alt="" className={classes.imgStart} />
+        <label
+          htmlFor="telephone"
+          className={`${classes.label} ${focus === 3 ? classes.show2 : ""}`}
+        >
+          <div>
+            <Tel />
+          </div>
           <input
             placeholder="0901 222 3333"
             text="tel"
             id="telephone"
-            onChange={(e) => setPhone(e.target.value)}
+            onFocus={() => setFocus(3)}
+            onChange={(e) =>
+              setData((prevState) => ({
+                ...prevState,
+                phoneNumber: e.target.value,
+              }))
+            }
           />
-        </div>
+        </label>
 
-        <label htmlFor="password">Password </label>
-        <div className={classes.password}>
-          <img src={Padlock} alt="" className={classes.imgStart} />
+        <label
+          htmlFor="password"
+          className={`${classes.label} ${focus === 4 ? classes.show : ""}`}
+        >
+          <div>
+            <Padlock stroke="#9DA8B6" />
+          </div>
           <input
             placeholder="• • • • • • • •"
             type={password ? "password" : "text"}
             id="password"
-            onChange={(e) => setPass(e.target.value)}
+            onFocus={() => setFocus(4)}
+            onChange={(e) =>
+              setData((prevState) => ({
+                ...prevState,
+                password: e.target.value,
+              }))
+            }
           />
           <img
             className={classes.imgEnd}
@@ -143,15 +174,26 @@ const Register = ({ history }) => {
             alt="Password"
             onClick={() => showPassword(!password)}
           />
-        </div>
+        </label>
 
-        <label htmlFor="confirmPassword">Confirm Password </label>
-        <div className={classes.password}>
+        <label
+          htmlFor="confirmPassword"
+          className={`${classes.label} ${focus === 5 ? classes.show : ""}`}
+        >
+          <div>
+            <Padlock stroke="#9DA8B6" />
+          </div>
           <input
             placeholder="• • • • • • • •"
             type={confirmPassword ? "password" : "text"}
             id="confirmPassword"
-            onChange={(e) => setCpass(e.target.value)}
+            onFocus={() => setFocus(5)}
+            onChange={(e) =>
+              setData((prevState) => ({
+                ...prevState,
+                confirm_password: e.target.value,
+              }))
+            }
           />
           <img
             className={classes.imgEnd}
@@ -159,7 +201,7 @@ const Register = ({ history }) => {
             alt="Password"
             onClick={() => showConfirmPassword(!confirmPassword)}
           />
-        </div>
+        </label>
         <ButtonBlue onClick={signup}>
           Register
           {loader && (
@@ -168,16 +210,16 @@ const Register = ({ history }) => {
             </div>
           )}
         </ButtonBlue>
-        <div className={classes.line}>
+        {/* <div className={classes.line}>
           <span></span>
           <p>or</p>
           <span></span>
-        </div>
+        </div> */}
+        <p className="small-text center-text medium-margin">
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
       </form>
-      <button className={classes.google}>Sign up with Google</button>
-      <p className="small-text center-text medium-margin">
-        Already have an account? <Link to="/login">Login</Link>
-      </p>
+      {/* <button className={classes.google}>Sign up with Google</button> */}
     </main>
   );
 };

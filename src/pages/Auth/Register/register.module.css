@@ -1,0 +1,122 @@
+.main {
+  background-repeat: no-repeat;
+  background-size: 120%;
+  background-position: top;
+  background-image: url("../../../assets/images/landing/bg.png");
+  color: #fff;
+  width: 100vw;
+  height: 100vh;
+}
+.main form {
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 2rem;
+}
+.main > div {
+  padding: 3rem 0 1.5rem 0;
+  width: 90%;
+}
+.main > div p {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+}
+.main input {
+  background: transparent;
+  margin-right: auto;
+  padding: 12px;
+  border: none;
+  color: #222222;
+  font-size: 16px;
+  border-left: 1px solid #9da8b6;
+}
+.main input::placeholder {
+  color: #9da8b6;
+}
+.main input:focus {
+  outline: none;
+}
+.main label {
+  width: 100%;
+  margin: 40px auto;
+}
+
+.main form button {
+  width: 100%;
+}
+.main form p {
+  color: #636366;
+}
+.imgEnd {
+  right: 38px;
+  top: 15px;
+}
+.imgStart {
+  top: 18px;
+  left: 38px;
+}
+.label {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #9da8b6;
+}
+.label div {
+  width: 50px;
+}
+.label svg {
+  margin: 0px 10px;
+}
+.show {
+  border-bottom: 1px solid #222222;
+}
+.show input {
+  border-left: 1px solid #222222;
+}
+.show2 {
+  border-bottom: 1px solid #222222;
+}
+.show svg path {
+  stroke: #222222;
+}
+.show2 input {
+  border-left: 1px solid #222222;
+}
+.show2 svg path {
+  fill: #222222;
+}
+.main a {
+  text-decoration: underline;
+  font-weight: 500;
+  color: #407bff;
+}
+.line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+.line span {
+  height: 2px;
+  width: 42%;
+  background: #c4c4c4;
+}
+.line p {
+  font-size: 12px;
+  padding: 0px 5px;
+}
+.google {
+  width: 90%;
+  display: block;
+  background: #ffffff;
+  margin: auto;
+  border: none;
+  border-radius: 7.10719px;
+  padding: 12px;
+}
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}

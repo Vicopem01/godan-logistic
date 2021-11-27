@@ -31,3 +31,23 @@ export const ButtonWhite = ({ children, onClick, className }) => {
     </button>
   );
 };
+export const ButtonRed = ({ children, onClick, className }) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`${classes.btn} ${classes.btn_red} ${className}`}
+    >
+      {children}
+    </button>
+  );
+};
+export const ButtonGreen = ({ children, onClick, className }) => {
+  return (
+    <button
+      onClick={onClick}
+      className={`${classes.btn} ${classes.btn_green} ${className}`}
+    >
+      {children}
+    </button>
+  );
+};

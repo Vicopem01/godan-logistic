@@ -1,5 +1,4 @@
 import classes from "./login.module.css";
-import EyeShow from "../../../assets/images/authentication/eyeShow.svg";
 import { ButtonWhite } from "../../../components/UI/Button/button";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -46,8 +45,8 @@ const Login = ({ history }) => {
           try {
             setLoader(true);
             const res = await login(data);
-            console.log(res);
             localStorage.setItem("token", res.data.data.token);
+            console.log("token", res.data.data.token);
             history.push("/");
           } catch (error) {
             setLoader(false);
@@ -60,12 +59,12 @@ const Login = ({ history }) => {
   return (
     <main className={classes.main}>
       <div>
-        <div className="medium-padding center-flex">
+        <Link className="medium-padding center-flex" to="/">
           <img className="" src={Logo} alt="Logo" />
-        </div>
+        </Link>
         <div className="small-margin">
-          <p className="medium-text  medium-weight">Welcome Back</p>
-          <p className="medium-text">Login your Godan account</p>
+          <p className="medium-text  medium-weight center-text">Welcome Back</p>
+          <p className="medium-text center-text">Login your Godan account</p>
         </div>
         <form className="medium-padding">
           <label htmlFor="email" className={classes.flexLabel}>
@@ -88,6 +87,8 @@ const Login = ({ history }) => {
               onChange={(e) => setPass(e.target.value)}
             />
           </label>
+          <br />
+          <Link to="/forgot-password">Forgot Password?</Link>
           <ButtonWhite onClick={handleLogin} className="center-flex">
             {loader ? <Loader /> : "Login"}
           </ButtonWhite>

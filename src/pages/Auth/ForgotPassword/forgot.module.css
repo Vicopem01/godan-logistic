@@ -7,49 +7,48 @@
   width: 100vw;
   height: 100vh;
 }
+.main form {
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  padding: 2rem;
+  height: 100%;
+}
 .main > div {
-  padding-top: 4rem;
-  margin: 0px auto 8rem auto;
+  padding: 3rem 0 1.5rem 0;
   width: 90%;
+}
+.main > div p {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
 }
 .main input {
-  width: 90%;
   background: transparent;
-  margin: auto;
-  padding: 10px;
+  margin-right: auto;
+  padding: 12px;
   border: none;
-  border-radius: 10px;
-  color: #ffffff;
+  color: #222222;
   font-size: 16px;
+  border-left: 1px solid #9da8b6;
 }
 .main input::placeholder {
-  color: #f8f6e7;
+  color: #9da8b6;
 }
 .main input:focus {
   outline: none;
 }
 .main label {
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 40px;
+  margin-bottom: 10px   ;
 }
-.flexLabel {
-  display: flex;
-  border-bottom: 1px solid #f8f6e7;
-}
-.flexLabel span {
-  background: #f8f6e7;
-  height: inherit;
-  display: block;
-  width: 2px;
-  margin: 0 18px;
-}
+
 .main form button {
-  margin: 25px auto;
+  margin: 30px 0;
+  width: 100%;
 }
-.form p {
-  font-weight: 400;
-  font-size: 16px;
+.main form p {
+  color: #636366;
 }
 .imgEnd {
   right: 38px;
@@ -59,9 +58,32 @@
   top: 18px;
   left: 38px;
 }
+.label {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #9da8b6;
+}
+.label div {
+  width: 50px;
+}
+.label svg {
+  margin: 0px 10px;
+}
+.show {
+  border-bottom: 1px solid #222222;
+}
+.show input {
+  border-left: 1px solid #222222;
+}
+
+.show svg path {
+  stroke: #222222;
+}
+
 .main a {
   text-decoration: underline;
-  font-weight: 400;
+  font-weight: 500;
+  color: #407bff;
 }
 .line {
   display: flex;

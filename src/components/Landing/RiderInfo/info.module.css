@@ -1,0 +1,121 @@
+.background {
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+.main {
+  border-radius: 15px 15px 0px 0px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  padding: 30px;
+}
+.star {
+  position: relative;
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 0.9em;
+  margin-right: 0.9em;
+  margin-bottom: 1.2em;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0.7em solid #fc0;
+  border-left: 0.3em solid transparent;
+  /* Controlls the size of the stars. */
+  font-size: 8px;
+}
+.star:before,
+.star:after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0.6em;
+  left: -1em;
+  border-right: 1em solid transparent;
+  border-bottom: 0.7em solid #fc0;
+  border-left: 1em solid transparent;
+  transform: rotate(-35deg);
+}
+.star:after {
+  transform: rotate(35deg);
+}
+.cancel {
+  width: 20px;
+  margin-left: auto;
+}
+.container,
+.flexMain,
+.imgDiv {
+  display: flex;
+}
+.flexMain > span {
+  background: #dadada;
+  display: block;
+  width: 100%;
+  height: 1.5px;
+}
+.container {
+  align-items: center;
+  justify-content: space-between;
+}
+.container > div:last-of-type {
+  width: 60%;
+}
+.imgDiv img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50px;
+}
+.imgDiv {
+  flex-direction: column;
+  align-items: center;
+}
+.flexMain {
+  justify-content: center;
+  flex-direction: column;
+}
+.loading {
+  display: flex;
+  margin: 20px 0;
+  position: relative;
+  width: 80%;
+}
+.loading > div > div {
+  position: absolute;
+  right: 30px;
+  top: -30px;
+}
+.contact {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.riderLocation {
+  margin: 20px 0;
+}
+.contact > div:first-of-type {
+  display: flex;
+  gap: 10px;
+}
+.number {
+  display: flex;
+  flex-direction: column;
+}
+.number a {
+  color: #407bff;
+}
+.share {
+  display: flex;
+  border: 1px solid #407bff;
+  border-radius: 5px;
+  padding: 5px;
+  gap: 5px;
+}

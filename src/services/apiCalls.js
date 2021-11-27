@@ -28,12 +28,24 @@ export const createNewOrder = async (data) => {
   return response;
 };
 
-export const getAllAvailableRiders = async (data) => {
+export const getAllAvailableRiders = async () => {
   const response = await axios({
     method: "GET",
-    url: `${baseUrl}/user/auth/availabe-riders`,
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-    data: data,
+    url: `${baseUrl}/user/auth/available-riders`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return response;
+};
+
+export const getSingleRider = async (id) => {
+  const response = await axios({
+    method: "GET",
+    url: `${baseUrl}/user/auth/available-rider/${id}`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
   });
   return response;
 };

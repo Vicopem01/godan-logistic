@@ -1,1 +1,1 @@
-export const baseUrl = "https://eb69-102-89-0-206.ngrok.io"
+export const baseUrl = "https://godanlogistics.herokuapp.com";

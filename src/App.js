@@ -4,6 +4,7 @@ import Profile from "./pages/Profile/profile";
 import Register from "./pages/Auth/Register/register";
 import Login from "./pages/Auth/Login/login";
 import Verify from "./pages/Auth/Verify/verify";
+import ForgotPassword from "./pages/Auth/ForgotPassword/forgot";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/profile" exact component={Profile} />
         <Route path="/register" exact component={Register} />
         <Route path="/login" exact component={Login} />
+        <Route path="/forgot-password" exact component={ForgotPassword} />
         <Route path="/verify-mail" exact component={Verify} />
       </Switch>
     </>

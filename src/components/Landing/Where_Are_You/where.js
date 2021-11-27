@@ -2,16 +2,19 @@ import { LocationPin } from "../../../svgs";
 import { ButtonBlue, ButtonGrey } from "../../UI/Button/button";
 import classes from "./where.module.css";
 
-const Where = ({ moveStep1 }) => {
+const Where = ({ moveStep1, setLocation }) => {
   const getLocation = async () => {
     try {
       await navigator.geolocation.getCurrentPosition(function (position) {
         console.log("Latitude is :", position.coords.latitude);
-        localStorage.setItem("latitude", position.coords.latitude);
         console.log("Longitude is :", position.coords.longitude);
-        localStorage.setItem("longitude", position.coords.longitude);
+        setLocation((prevState) => ({
+          ...prevState,
+          lat: position.coords.latitude,
+          long: position.coords.longitude,
+        }));
       });
-      moveStep1()
+      moveStep1();
     } catch (error) {
       console.log(error);
     }

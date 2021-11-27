@@ -1,14 +1,18 @@
 import classes from "./rider.module.css";
-import RiderImg from "../../assets/images/landing/rider.jpg";
 
-const Rider = () => {
+const Rider = ({ avatar, fullName, vehiclePlateNumber, onClick, _id }) => {
+  const getId = () => {
+    console.log(_id);
+    localStorage.setItem("_id", _id);
+    onClick();
+  };
   return (
-    <div className={classes.flexBox}>
+    <div className={classes.flexBox} onClick={getId}>
       <div className={classes.box}>
-        <img src={RiderImg} alt="" />
+        <img src={avatar} alt="" />
         <div className={classes.info}>
-          <p>Ajao Afeez Borris</p>
-          <span>Plate number: gyfiy3e</span>
+          <p>{fullName}</p>
+          <span>Plate number: {vehiclePlateNumber}</span>
         </div>
       </div>
       <div>

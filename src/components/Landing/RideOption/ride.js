@@ -87,7 +87,8 @@ const Ride = ({ onClick, setData }) => {
           setData={setData}
         />
       )}
-      {bg == 0 || (option === "" && <ButtonGrey>Confirm options</ButtonGrey>)}
+      {option === "" && bg === 0 && <ButtonGrey>Confirm options</ButtonGrey>}
+      {bg !== 0 && option === "" && <ButtonGrey>Confirm options</ButtonGrey>}
       {bg > 0 && option !== "" && (
         <ButtonBlue onClick={onClick}>Confirm options</ButtonBlue>
       )}

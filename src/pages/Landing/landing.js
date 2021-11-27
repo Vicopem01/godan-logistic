@@ -11,6 +11,7 @@ import GetRiders from "../../components/Landing/GetRiders'/getRiders";
 import { createNewOrder } from "../../services/apiCalls";
 import { toast } from "react-toastify";
 import ToastMessage from "../../components/Toast/toast";
+import RiderInfo from "../../components/Landing/RiderInfo/info";
 
 const Landing = () => {
   const [sideBar, setSideBar] = useState(false);
@@ -23,12 +24,22 @@ const Landing = () => {
     paymentMethod: "",
     vehicleCategory: "",
   });
-
+  const [location, setLocation] = useState({
+    lat: "",
+    long: "",
+  });
+  const fillAddress = () => {
+    if (data.startDestination === "" || data.endDestination === "") {
+      toast.error("Input locations");
+    } else {
+      setStage("stage3");
+    }
+  };
   const getRider = async () => {
     console.log(data);
     try {
-      const res = await createNewOrder(data);
-      console.log(res);
+      // const res = await createNewOrder(data);
+      // console.log(res);
       setStage("stage4");
     } catch (error) {
       toast.error(
@@ -37,43 +48,72 @@ const Landing = () => {
     }
   };
   return (
-    <div>
-      {stage === "stage1" && (
-        <>
-          <Menu onClick={() => setSideBar(true)} />
-          <SideBar sideBar={sideBar} cancelSidebar={() => setSideBar(false)} />
-          <Map />
-          <Where moveStep1={() => setStage("stage2")} />
-        </>
-      )}
+    <>
+      <Map />
+      <div>
+        {stage === "stage1" && (
+          <>
+            <Menu onClick={() => setSideBar(true)} />
+            <SideBar
+              sideBar={sideBar}
+              cancelSidebar={() => setSideBar(false)}
+            />
+            <Where
+              moveStep1={() => setStage("stage2")}
+              setLocation={setLocation}
+            />
+          </>
+        )}
 
-      {stage === "stage2" && (
-        <>
-          <Menu onClick={() => setSideBar(true)} />
-          <SideBar sideBar={sideBar} cancelSidebar={() => setSideBar(false)} />
-          <Map />
-          <WhereTo onClick={() => setShow(true)} />
-          <SlideUp
-            show={show}
-            setData={setData}
-            onClick={() => setShow(false)}
-            onClick2={() => setStage("stage3")}
-          />
-        </>
-      )}
-      {stage === "stage3" && (
-        <>
-          <Option onClick={getRider} setData={setData} />
-          <Map />
-        </>
-      )}
-      {stage === "stage4" && (
-        <>
-          <GetRiders />
-          <Map />
-        </>
-      )}
-    </div>
+        {stage === "stage2" && (
+          <>
+            <Menu onClick={() => setSideBar(true)} />
+            <SideBar
+              sideBar={sideBar}
+              cancelSidebar={() => setSideBar(false)}
+            />
+            <WhereTo onClick={() => setShow(true)} />
+            <SlideUp
+              show={show}
+              setData={setData}
+              onClick={() => setShow(false)}
+              onClick2={fillAddress}
+              location={location}
+            />
+          </>
+        )}
+        {stage === "stage3" && (
+          <>
+            <Option onClick={getRider} setData={setData} />
+            {/* <Menu onClick={() => setSideBar(true)} />
+            <SideBar
+              sideBar={sideBar}
+              cancelSidebar={() => setSideBar(false)}
+            /> */}
+          </>
+        )}
+        {stage === "stage4" && (
+          <>
+            <GetRiders
+              onClick={() =>
+                // console.log("yesss")
+                setStage("stage5")
+              }
+            />
+          </>
+        )}
+        {stage === "stage5" && (
+          <>
+            <Menu onClick={() => setSideBar(true)} />
+            <SideBar
+              sideBar={sideBar}
+              cancelSidebar={() => setSideBar(false)}
+            />
+            <RiderInfo onClick={() => setStage("stage4")} />
+          </>
+        )}
+      </div>
+    </>
   );
 };
 export default Landing;

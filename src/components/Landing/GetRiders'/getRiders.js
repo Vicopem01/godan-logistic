@@ -23,6 +23,8 @@ const GetRiders = ({ onClick }) => {
   }, []);
   return (
     <div className={classes.main}>
+      <span className={classes.lineSpan}></span>
+
       <p>Price charge: #5000</p>
       <div>
         {data?.map((item) => (

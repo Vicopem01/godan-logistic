@@ -7,6 +7,11 @@
   width: 100vw;
   height: 100vh;
 }
+.main > div img {
+  position: absolute;
+  top: 51px;
+  left: 20px;
+}
 .main form {
   background: #fff;
   border-radius: 20px 20px 0 0;
@@ -15,7 +20,6 @@
 }
 .main > div {
   padding: 3rem 0 1.5rem 0;
-  width: 90%;
 }
 .main > div p {
   text-align: center;
@@ -40,23 +44,12 @@
 .main label {
   width: 100%;
   margin-top: 40px;
-  margin-bottom: 10px   ;
+  margin-bottom: 10px;
 }
 
 .main form button {
   margin: 30px 0;
   width: 100%;
-}
-.main form p {
-  color: #636366;
-}
-.imgEnd {
-  right: 38px;
-  top: 15px;
-}
-.imgStart {
-  top: 18px;
-  left: 38px;
 }
 .label {
   display: flex;
@@ -80,11 +73,6 @@
   stroke: #222222;
 }
 
-.main a {
-  text-decoration: underline;
-  font-weight: 500;
-  color: #407bff;
-}
 .line {
   display: flex;
   align-items: center;

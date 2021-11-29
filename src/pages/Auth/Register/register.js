@@ -9,6 +9,7 @@ import { emailCheck, phoneNumberCheck } from "../../../services/functions";
 import { registerNewUser } from "../../../services/apiCalls";
 import { toast } from "react-toastify";
 import ToastMessage from "../../../components/Toast/toast";
+import Arrow from "../../../assets/images/authentication/arrowLeft.svg";
 
 const Register = ({ history }) => {
   const [password, showPassword] = useState(true);
@@ -37,47 +38,35 @@ const Register = ({ history }) => {
       toast.error(
         <ToastMessage text="Error" message="Please fill all fields" />
       );
+    } else if (!emailCheck(data.email)) {
+      toast.error(
+        <ToastMessage text="Error" message="Invalid Email Address" />
+      );
+    } else if (!phoneNumberCheck(data.phoneNumber)) {
+      toast.error(<ToastMessage text="Error" message="Invalid Phone Number" />);
+    } else if (data.password.length < 6) {
+      toast.error(
+        <ToastMessage
+          text="Error"
+          message="Password should be at least 6 characters"
+        />
+      );
+    } else if (data.password !== data.confirm_password) {
+      toast.error(
+        <ToastMessage text="Error" message="Passwords do not match" />
+      );
     } else {
-      if (!emailCheck(data.email)) {
-        toast.error(
-          <ToastMessage text="Error" message="Invalid Email Address" />
+      showLoader(true);
+      try {
+        const res = await registerNewUser(data);
+        console.log(res);
+        toast.success(
+          "Account created sucessfully, check your mail for verification"
         );
-      } else {
-        if (!phoneNumberCheck(data.phoneNumber)) {
-          toast.error(
-            <ToastMessage text="Error" message="Invalid Phone Number" />
-          );
-        } else {
-          if (data.password.length < 6) {
-            toast.error(
-              <ToastMessage
-                text="Error"
-                message="Password should be at least 6 characters"
-              />
-            );
-          } else {
-            if (data.password !== data.confirm_password) {
-              toast.error(
-                <ToastMessage text="Error" message="Passwords do not match" />
-              );
-            } else {
-              showLoader(true);
-              try {
-                const res = await registerNewUser(data);
-                console.log(res);
-                toast.success(
-                  "Account created sucessfully, check your mail for verification"
-                );
-                history.push("/login");
-              } catch (error) {
-                showLoader(false);
-                toast.error(
-                  <ToastMessage text="Error" message={error.message} />
-                );
-              }
-            }
-          }
-        }
+        history.push("/login");
+      } catch (error) {
+        showLoader(false);
+        toast.error(<ToastMessage text="Error" message={error.message} />);
       }
     }
   };
@@ -85,6 +74,9 @@ const Register = ({ history }) => {
   return (
     <main className={classes.main}>
       <div>
+        <Link to="/login">
+          <img src={Arrow} alt="" />
+        </Link>
         <p className="medium-text medium-weight">Create your account</p>
       </div>
       <form>
@@ -203,11 +195,14 @@ const Register = ({ history }) => {
           />
         </label>
         <ButtonBlue onClick={signup}>
-          Register
-          {loader && (
+          {loader ? (
             <div>
-              <Loader />
+              <div>
+                <Loader color="#ffffff" />
+              </div>
             </div>
+          ) : (
+            "Register"
           )}
         </ButtonBlue>
         {/* <div className={classes.line}>

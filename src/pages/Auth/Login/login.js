@@ -46,7 +46,6 @@ const Login = ({ history }) => {
             setLoader(true);
             const res = await login(data);
             localStorage.setItem("token", res.data.data.token);
-            console.log("token", res.data.data.token);
             history.push("/");
           } catch (error) {
             setLoader(false);
@@ -90,7 +89,15 @@ const Login = ({ history }) => {
           <br />
           <Link to="/forgot-password">Forgot Password?</Link>
           <ButtonWhite onClick={handleLogin} className="center-flex">
-            {loader ? <Loader /> : "Login"}
+            {loader ? (
+              <div>
+                <div>
+                  <Loader color="#407bff" />
+                </div>
+              </div>
+            ) : (
+              "Login"
+            )}
           </ButtonWhite>
           {/* <div className={classes.line}>
             <span></span>

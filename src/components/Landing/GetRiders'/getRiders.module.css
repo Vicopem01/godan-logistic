@@ -1,7 +1,7 @@
 .main {
   width: 100%;
   max-height: 60vh;
-  padding: 2rem 1rem 1rem 1rem;
+  padding: 0.1rem 1rem 1rem 1rem;
   text-align: center;
   box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.25);
   border-radius: 10px 10px 0px 0px;
@@ -11,6 +11,14 @@
   background: #fff;
   z-index: 1;
   overflow-y: auto;
+}
+.lineSpan {
+  background: rgba(71, 119, 247, 0.2);
+  border-radius: 20px;
+  width: 60%;
+  margin: 10px auto 20px auto;
+  display: block;
+  height: 7px;
 }
 .main p {
   text-align: left;

@@ -1,0 +1,45 @@
+.main {
+  background-repeat: no-repeat;
+  background-size: 120%;
+  background-position: top;
+  background-image: url("../../assets/images/landing/bg.png");
+  color: #fff;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+.whitebg {
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  height: 100%;
+  color: #444444;
+  margin-bottom: 50px;
+}
+.whitebg h2 {
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-decoration: underline;
+
+}
+.main > div img {
+  position: absolute;
+  top: 51px;
+  left: 20px;
+}
+.main > div {
+  padding: 3rem 0 1.5rem 0;
+}
+.main div:first-of-type p {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+}
+.whitebg p {
+  width: 85%;
+  margin: auto;
+  text-align: left;
+  font-size: 14px;
+  padding-bottom: 2rem;
+}

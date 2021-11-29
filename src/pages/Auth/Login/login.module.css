@@ -47,17 +47,19 @@
 .main form button {
   margin: 25px auto;
 }
+.main form button > div {
+  position: relative; 
+  padding: 12px;
+}
+.main form button > div > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .form p {
   font-weight: 400;
   font-size: 16px;
-}
-.imgEnd {
-  right: 38px;
-  top: 15px;
-}
-.imgStart {
-  top: 18px;
-  left: 38px;
 }
 .main a {
   text-decoration: underline;

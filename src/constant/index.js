@@ -24,16 +24,16 @@ export const Mail = ({stroke}) => (
     <path
       d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
       stroke={stroke}
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M22 6L12 13L2 6"
       stroke={stroke}
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -64,16 +64,16 @@ export const Padlock = ({stroke}) => (
     <path
       d="M21.0135 11H5.57298C4.35475 11 3.36719 11.8954 3.36719 13V20C3.36719 21.1046 4.35475 22 5.57298 22H21.0135C22.2317 22 23.2193 21.1046 23.2193 20V13C23.2193 11.8954 22.2317 11 21.0135 11Z"
       stroke={stroke}
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
     <path
       d="M7.7793 11V7C7.7793 5.67392 8.36028 4.40215 9.39445 3.46447C10.4286 2.52678 11.8312 2 13.2938 2C14.7563 2 16.1589 2.52678 17.1931 3.46447C18.2272 4.40215 18.8082 5.67392 18.8082 7V11"
       stroke={stroke}
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -119,6 +119,37 @@ export const Truck = () => (
     <path
       d="M25.9173 5.6665H30.6673L35.4173 12.0885V21.4998H32.1952C32.007 22.8208 31.3485 24.0295 30.3406 24.9039C29.3328 25.7783 28.0433 26.2598 26.709 26.2598C25.3747 26.2598 24.0852 25.7783 23.0773 24.9039C22.0695 24.0295 21.411 22.8208 21.2227 21.4998H13.1952C13.007 22.8208 12.3485 24.0295 11.3406 24.9039C10.3328 25.7783 9.04329 26.2598 7.70898 26.2598C6.37468 26.2598 5.08518 25.7783 4.07733 24.9039C3.06948 24.0295 2.41096 22.8208 2.22273 21.4998H0.583984V2.49984C0.583984 2.07991 0.750799 1.67718 1.04773 1.38025C1.34466 1.08332 1.74739 0.916504 2.16732 0.916504H24.334C24.7539 0.916504 25.1566 1.08332 25.4536 1.38025C25.7505 1.67718 25.9173 2.07991 25.9173 2.49984V5.6665ZM25.9173 8.83317V13.5832H32.2506V13.1319L29.0713 8.83317H25.9173Z"
       fill="#222222"
+    />
+  </svg>
+);
+
+export const Distance = () => (
+  <svg
+    width="10"
+    height="89"
+    viewBox="0 0 10 89"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M9 5.97163C9 8.40059 7.15541 10.2695 5 10.2695C2.84459 10.2695 1 8.40059 1 5.97163C1 3.54267 2.84459 1.67376 5 1.67376C7.15541 1.67376 9 3.54267 9 5.97163Z"
+      fill="#871D43"
+      stroke="black"
+      strokeWidth="2"
+    />
+    <path
+      d="M9 83.6737C9 86.1027 7.15541 87.9716 5 87.9716C2.84459 87.9716 1 86.1027 1 83.6737C1 81.2448 2.84459 79.3759 5 79.3759C7.15541 79.3759 9 81.2448 9 83.6737Z"
+      fill="#505DD1"
+      stroke="black"
+      strokeWidth="2"
+    />
+    <rect
+      x="3"
+      y="13.6241"
+      width="3"
+      height="62.3972"
+      fill="#ADCBE3"
+      fillOpacity="0.5"
     />
   </svg>
 );

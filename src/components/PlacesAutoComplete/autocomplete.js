@@ -1,9 +1,10 @@
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { useState } from "react";
 const Component = () => {
-  const [address, setaddress] = useState(null);
+  const [address, setaddress] = useState("");
   return (
     <div>
+
        <GooglePlacesAutocomplete
             apiKey="AIzaSyDrGNEbrjgK-a0HhOmQpveIOc-2S0GJhSs"
             autocompletionRequest={{

@@ -9,6 +9,7 @@ import { emailCheck, phoneNumberCheck } from "../../../services/functions";
 import { registerNewUser } from "../../../services/apiCalls";
 import { toast } from "react-toastify";
 import ToastMessage from "../../../components/Toast/toast";
+import Arrow from "../../../assets/images/authentication/arrowLeft.svg";
 
 const Register = ({ history }) => {
   const [loader, showLoader] = useState(false);
@@ -47,6 +48,9 @@ const Register = ({ history }) => {
   return (
     <main className={classes.main}>
       <div>
+      <Link to="/login">
+          <img src={Arrow} alt="" />
+        </Link>
         <p className="medium-text medium-weight">Reset Password</p>
       </div>
       <form>
@@ -64,9 +68,6 @@ const Register = ({ history }) => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-        <p className="small-text left-text ">
-          <Link to="/login"> Return to Login</Link>
-        </p>
 
         <ButtonBlue onClick={signup}>
           Reset Password

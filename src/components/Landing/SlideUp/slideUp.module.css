@@ -27,7 +27,7 @@
   text-align: center;
 }
 .show {
-  height: 95vh;
+  height: 85vh;
 }
 .formDiv {
   margin-top: 3rem;
@@ -37,7 +37,7 @@
   position: relative;
   padding: 10px 10px 10px 55px;
 }
-.formDiv input {
+.formDiv input, .googlePlaces input {
   border: none;
   padding: 20px;
   font-size: 15px;
@@ -59,4 +59,11 @@
 }
 .formDiv input:focus {
   outline: none;
+}
+
+.btn{
+  width: 90%;
+  position: fixed;
+  bottom: 50px;
+  left: 5%;
 }

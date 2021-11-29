@@ -6,19 +6,24 @@
   color: #fff;
   width: 100vw;
   height: 100vh;
+  position: relative;
 }
 .main form {
   background: #fff;
   border-radius: 20px 20px 0 0;
   padding: 2rem;
 }
+.main > div img {
+  position: absolute;
+  top: 51px;
+  left: 20px;
+}
 .main > div {
   padding: 3rem 0 1.5rem 0;
-  width: 90%;
 }
 .main > div p {
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 500;
 }
 .main input {
@@ -46,14 +51,6 @@
 }
 .main form p {
   color: #636366;
-}
-.imgEnd {
-  right: 38px;
-  top: 15px;
-}
-.imgStart {
-  top: 18px;
-  left: 38px;
 }
 .label {
   display: flex;
@@ -94,6 +91,16 @@
   align-items: center;
   justify-content: center;
   margin: 10px 0;
+}
+.main form button > div {
+  position: relative;
+  padding: 12px;
+}
+.main form button > div > div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 .line span {
   height: 2px;

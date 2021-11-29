@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import classes from "./landing.module.css";
 import Map from "../../components/Map/map";
 import Menu from "../../components/Landing/Menu/menu";
@@ -12,8 +12,9 @@ import { createNewOrder } from "../../services/apiCalls";
 import { toast } from "react-toastify";
 import ToastMessage from "../../components/Toast/toast";
 import RiderInfo from "../../components/Landing/RiderInfo/info";
+import { createAutoLogout } from "../../services/functions";
 
-const Landing = () => {
+const Landing = ({ history }) => {
   const [sideBar, setSideBar] = useState(false);
   const [stage, setStage] = useState("stage1");
   const [show, setShow] = useState(false);
@@ -24,16 +25,21 @@ const Landing = () => {
     paymentMethod: "",
     vehicleCategory: "",
   });
+  const [auth, setAuth] = useState(false);
   const [location, setLocation] = useState({
     lat: "",
     long: "",
   });
+  useEffect(async () => {
+    const res = await createAutoLogout();
+    setAuth(res);
+  }, []);
   const fillAddress = () => {
-    if (data.startDestination === "" || data.endDestination === "") {
-      toast.error("Input locations");
-    } else {
+    // if (data.startDestination === "" || data.endDestination === "") {
+    //   toast.error("Input locations");
+    // } else {
       setStage("stage3");
-    }
+    // }
   };
   const getRider = async () => {
     console.log(data);
@@ -47,6 +53,17 @@ const Landing = () => {
       );
     }
   };
+
+  const goToLogin = () => {
+    console.log("111");
+    toast.error(<ToastMessage text="Please login to continue" />);
+    console.log("222");
+    history.push("/login");
+    console.log("333");
+  };
+  // alert(err.name); // ReferenceError
+  // alert(err.message); // lalala is not defined
+  // alert(err.stack);
   return (
     <>
       <Map />
@@ -79,12 +96,17 @@ const Landing = () => {
               onClick={() => setShow(false)}
               onClick2={fillAddress}
               location={location}
+              place={data.startDestination}
             />
           </>
         )}
         {stage === "stage3" && (
           <>
-            <Option onClick={getRider} setData={setData} />
+            {!auth ? (
+              goToLogin()
+            ) : (
+              <Option onClick={getRider} setData={setData} />
+            )}
             {/* <Menu onClick={() => setSideBar(true)} />
             <SideBar
               sideBar={sideBar}

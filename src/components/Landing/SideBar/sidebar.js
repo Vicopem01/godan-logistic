@@ -6,11 +6,26 @@ import Cart from "../../../assets/images/sidebar/cart.svg";
 import Profile from "../../../assets/images/sidebar/profile.svg";
 import Tour from "../../../assets/images/sidebar/tour.svg";
 import Padlock from "../../../assets/images/sidebar/padlock.svg";
-// import Cancel from "../../../assets/images/sidebar/cancel.svg";
 import { ButtonWhite } from "../../UI/Button/button";
 import { Link, withRouter } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { getSingleUserInfo } from "../../../services/apiCalls";
+import { toast } from "react-toastify";
+import ToastMessage from "../../Toast/toast";
 
 const SideBar = ({ sideBar, cancelSidebar, history }) => {
+  const [data, setData] = useState({});
+  useEffect(async () => {
+    try {
+      const res = await getSingleUserInfo();
+      console.log(res.data.data);
+      setData(res.data.data);
+    } catch (error) {
+      toast.error(
+        <ToastMessage text="Error geting information" message={error.message} />
+      );
+    }
+  }, [localStorage.getItem("token")]);
   const authentication = localStorage.getItem("token");
   const handlelogout = () => {
     localStorage.removeItem("token");
@@ -25,9 +40,9 @@ const SideBar = ({ sideBar, cancelSidebar, history }) => {
             <div>
               <img src={ProfilePicture} alt="" />
               {authentication && (
-                <div>
-                  <h4>Ogunjobi Victor</h4>
-                  <p>View Profile</p>
+                <div className={classes.profileInfo}>
+                  <h4>{data?.fullName}</h4>
+                  <p>{data?.email}</p>
                 </div>
               )}
               {!authentication && (
@@ -51,33 +66,34 @@ const SideBar = ({ sideBar, cancelSidebar, history }) => {
           )}
           {authentication && (
             <div className={classes.links}>
-              <div>
+              <Link to="/profile">
                 <img src={Profile} alt="" />
                 <p>Profile</p>
-              </div>
-              <div>
+              </Link>
+              <Link>
                 <img src={Cart} alt="" />
                 <p>Payments</p>
-              </div>
-              <div>
+              </Link>
+              <Link to="/history">
                 <img src={Tag} alt="" />
                 <p>Delivery History</p>
-              </div>
+              </Link>
               <div>
                 <img src={Promotion} alt="" />
                 <p>Promotions</p>
+                <span>(coming soon)</span>
               </div>
-              <div>
+              <Link>
                 <img src={Tour} alt="" />
-                <p>Tour</p>
-              </div>
-              <div>
+                <p>Site Map</p>
+              </Link>
+              <Link to="/privacy-policy">
                 <img src={Padlock} alt="" />
                 <p>Privacy Policy</p>
-              </div>
-              <div className={classes.btn}>
+              </Link>
+              <Link className={classes.btn}>
                 <ButtonWhite onClick={handlelogout}>Log Out</ButtonWhite>
-              </div>
+              </Link>
             </div>
           )}
         </div>

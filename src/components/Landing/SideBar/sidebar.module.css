@@ -57,18 +57,29 @@
   background: #407bff;
   height: 100%;
 }
+.links > a,
 .links > div {
   display: flex;
   margin: 40px 0 40px 10px;
   align-items: center;
   color: #fff;
 }
+
+.links > a img,
 .links > div img {
   margin-right: 15px;
+}
+.links > div span{
+  color: #fff;
+  font-size: 12px;
+  margin-left: 5px;
 }
 .profile img {
   margin-right: 15px;
 }
 .profile h4 {
   margin-bottom: 5px;
+}
+.profileInfo p {
+  font-size: 12px;
 }

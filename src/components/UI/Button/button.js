@@ -21,6 +21,7 @@ export const ButtonGrey = ({ children, onClick, className }) => {
     </button>
   );
 };
+
 export const ButtonWhite = ({ children, onClick, className }) => {
   return (
     <button
@@ -31,6 +32,7 @@ export const ButtonWhite = ({ children, onClick, className }) => {
     </button>
   );
 };
+
 export const ButtonRed = ({ children, onClick, className }) => {
   return (
     <button

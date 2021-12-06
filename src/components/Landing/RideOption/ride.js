@@ -2,14 +2,55 @@ import classes from "./ride.module.css";
 import { Car, Truck, Bike } from "../../../constant";
 import Card from "../../../assets/images/rideOption/card.svg";
 import Arrow from "../../../assets/images/rideOption/arrowForward.svg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ButtonGrey, ButtonBlue } from "../../UI/Button/button";
 import Payment from "../PaymentOption/payment";
+import { toast } from "react-toastify";
+import ToastMessage from "../../Toast/toast";
+import { getDistanceBetweenLocations } from "../../../services/apiCalls";
 
-const Ride = ({ onClick, setData }) => {
+const Ride = ({ onClick, setData, data, setLoad }) => {
   const [bg, setBg] = useState(0);
   const [payment, setPayment] = useState(false);
   const [option, setOption] = useState("");
+  const [select, setSelect] = useState(0);
+
+  useEffect(async () => {
+    setLoad(true);
+    console.log(data);
+    try {
+      console.log(
+        encodeURI(data.startDestination),
+        encodeURI(data.endDestination)
+      );
+      const res = await getDistanceBetweenLocations(
+        encodeURI(data.startDestination),
+        encodeURI(data.endDestination)
+      );
+      console.log(res.data.rows[0].elements[0].distance.value);
+      setData((prevState) => ({
+        ...prevState,
+        distance: res.data.rows[0].elements[0].distance.value,
+      }));
+      setLoad(false);
+    } catch (error) {
+      setLoad(false)
+      error.response
+        ? toast.error(
+            <ToastMessage
+              text="Error getting distance"
+              message={error.response.data.message}
+            />
+          )
+        : toast.error(
+            <ToastMessage
+              text="Error getting distance"
+              message={error.message}
+            />
+          );
+    }
+  }, []);
+
   const bike = () => {
     setBg(1);
     setData((prevState) => ({
@@ -45,27 +86,27 @@ const Ride = ({ onClick, setData }) => {
             <Bike />
             <p>GoDan Bike</p>
           </div>
-          <p>#5000</p>
+          <p>₦ {data.distance / 10}</p>
         </div>
         <div
           className={`${classes.options} ${bg === 2 ? classes.bg : ""}`}
-          onClick={car}
+          // onClick={car}
         >
           <div>
             <Car />
             <p>GoDan Car</p>
           </div>
-          <p>#5000</p>
+          <span>coming soon</span>
         </div>
         <div
           className={`${classes.options} ${bg === 3 ? classes.bg : ""}`}
-          onClick={truck}
+          // onClick={truck}
         >
           <div>
             <Truck />
             <p>GoDan Truck</p>
           </div>
-          <p>#5000</p>
+          <span>coming soon</span>
         </div>
       </div>
       <span className={classes.line}></span>
@@ -85,10 +126,11 @@ const Ride = ({ onClick, setData }) => {
           onClick={() => setPayment(false)}
           setOption={setOption}
           setData={setData}
+          setSelect={setSelect}
+          select={select}
         />
       )}
-      {option === "" && bg === 0 && <ButtonGrey>Confirm options</ButtonGrey>}
-      {bg !== 0 && option === "" && <ButtonGrey>Confirm options</ButtonGrey>}
+      {option === "" || bg == 0 ? <ButtonGrey>Confirm options</ButtonGrey> : ""}
       {bg > 0 && option !== "" && (
         <ButtonBlue onClick={onClick}>Confirm options</ButtonBlue>
       )}

@@ -8,20 +8,23 @@ import WhereTo from "../../components/Landing/WhereTo/whereTo";
 import SlideUp from "../../components/Landing/SlideUp/slideUp";
 import Option from "../../components/Landing/RideOption/ride";
 import GetRiders from "../../components/Landing/GetRiders'/getRiders";
-import { createNewOrder } from "../../services/apiCalls";
+import { createNewBooking } from "../../services/apiCalls";
 import { toast } from "react-toastify";
 import ToastMessage from "../../components/Toast/toast";
 import RiderInfo from "../../components/Landing/RiderInfo/info";
 import { createAutoLogout } from "../../services/functions";
+import Loader from "../../components/Loader/loader";
 
 const Landing = ({ history }) => {
   const [sideBar, setSideBar] = useState(false);
   const [stage, setStage] = useState("stage1");
   const [show, setShow] = useState(false);
+  const [load, setLoad] = useState(false);
+  const [bookingId, setBookingId] = useState("");
   const [data, setData] = useState({
     startDestination: "",
     endDestination: "",
-    distance: "20km",
+    distance: undefined,
     paymentMethod: "",
     vehicleCategory: "",
   });
@@ -35,17 +38,18 @@ const Landing = ({ history }) => {
     setAuth(res);
   }, []);
   const fillAddress = () => {
-    // if (data.startDestination === "" || data.endDestination === "") {
-    //   toast.error("Input locations");
-    // } else {
+    if (data.startDestination === "" || data.endDestination === null) {
+      toast.error("Input locations");
+    } else {
       setStage("stage3");
-    // }
+    }
   };
-  const getRider = async () => {
+  const createBooking = async () => {
     console.log(data);
     try {
-      // const res = await createNewOrder(data);
-      // console.log(res);
+      const res = await createNewBooking(data);
+      setBookingId(res.data.booking._id);
+      console.log(res.data.booking._id);
       setStage("stage4");
     } catch (error) {
       toast.error(
@@ -61,11 +65,9 @@ const Landing = ({ history }) => {
     history.push("/login");
     console.log("333");
   };
-  // alert(err.name); // ReferenceError
-  // alert(err.message); // lalala is not defined
-  // alert(err.stack);
   return (
     <>
+      {load && <Loader />}
       <Map />
       <div>
         {stage === "stage1" && (
@@ -78,6 +80,7 @@ const Landing = ({ history }) => {
             <Where
               moveStep1={() => setStage("stage2")}
               setLocation={setLocation}
+              setLoad={setLoad}
             />
           </>
         )}
@@ -105,23 +108,19 @@ const Landing = ({ history }) => {
             {!auth ? (
               goToLogin()
             ) : (
-              <Option onClick={getRider} setData={setData} />
+              <Option
+                onClick={createBooking}
+                setData={setData}
+                data={data}
+                setLoad={setLoad}
+              />
             )}
-            {/* <Menu onClick={() => setSideBar(true)} />
-            <SideBar
-              sideBar={sideBar}
-              cancelSidebar={() => setSideBar(false)}
-            /> */}
           </>
         )}
         {stage === "stage4" && (
           <>
-            <GetRiders
-              onClick={() =>
-                // console.log("yesss")
-                setStage("stage5")
-              }
-            />
+            <GetRiders price={data} setStage={setStage} bookingId={bookingId}
+            setSecondLoad={setLoad} />
           </>
         )}
         {stage === "stage5" && (

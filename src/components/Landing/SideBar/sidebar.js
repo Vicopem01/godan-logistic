@@ -18,7 +18,6 @@ const SideBar = ({ sideBar, cancelSidebar, history }) => {
   useEffect(async () => {
     try {
       const res = await getSingleUserInfo();
-      console.log(res.data.data);
       setData(res.data.data);
     } catch (error) {
       toast.error(

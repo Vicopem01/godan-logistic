@@ -13,7 +13,7 @@
   border-radius: 20px 20px 0 0;
   padding: 2rem;
 }
-.main > div img {
+.image {
   position: absolute;
   top: 51px;
   left: 20px;
@@ -21,7 +21,7 @@
 .main > div {
   padding: 3rem 0 1.5rem 0;
 }
-.main > div p {
+.ptext{
   text-align: center;
   font-size: 18px;
   font-weight: 500;

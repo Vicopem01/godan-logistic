@@ -1,9 +1,9 @@
-// import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-const SimpleMap = () => {
+const SimpleMap = ({ google }) => {
   const mapOptions = (maps: Maps) => {
     return {
       streetViewControl: false,
@@ -48,8 +48,14 @@ const SimpleMap = () => {
     },
     zoom: 11,
   };
-
-  //   render() {
+  // const center = {
+  //   lat: 6.88398,
+  //   lng: 3.670465,
+  // };
+  // const style = {
+  //   height: "100vh",
+  //   width: "100%",
+  // };
   return (
     // Important! Always set the container height explicitly
     <div style={{ height: "100vh", width: "100%" }}>
@@ -61,9 +67,14 @@ const SimpleMap = () => {
       >
         <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
       </GoogleMapReact>
+      {/* <Map google={google} style={style} center={center} zoom={15}></Map> */}
     </div>
   );
 };
 // }
+
+// export default GoogleApiWrapper({
+//   api: "AIzaSyAn3MKZaKiBWsJLIfurVvarCa-UjyOHMCo",
+// })(SimpleMap);
 
 export default SimpleMap;

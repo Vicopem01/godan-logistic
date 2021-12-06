@@ -2,82 +2,34 @@ import classes from "./slideUp.module.css";
 import Cancel from "../../../assets/images/landing/blueCancel.svg";
 import Distance from "../../../assets/images/landing/destinationImg.svg";
 import { ButtonBlue } from "../../UI/Button/button";
-import Geocode from "react-geocode";
 import { useState, useEffect } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { toast } from "react-toastify";
 import ToastMessage from "../../Toast/toast";
+import { geocodeByLatLng } from "react-google-places-autocomplete";
+
 const SlideUp = ({ place, show, onClick, onClick2, setData, location }) => {
-  const [address, setaddress] = useState("");
+  const [value, setValue] = useState(null);
   useEffect(() => {
-    Geocode.setApiKey("AIzaSyBpybr8fIeirph4O7kfGlrekKnkIZhOJ5A");
-    Geocode.setLanguage("en");
-    Geocode.setRegion("ng");
-
-    // set location_type filter . Its optional.
-    // google geocoder returns more that one address for given lat/lng.
-    // In some case we need one address as response for which google itself provides a location_type filter.
-    // So we can easily parse the result for fetching address components
-    // ROOFTOP, RANGE_INTERPOLATED, GEOMETRIC_CENTER, APPROXIMATE are the accepted values.
-    // And according to the below google docs in description, ROOFTOP param returns the most accurate result.
-    Geocode.setLocationType("ROOFTOP");
-
-    // Enable or disable logs. Its optional.
-    Geocode.enableDebug();
-
-    // Get address from latitude & longitude.
-    Geocode.fromLatLng(location.lat, location.long).then(
-      (response) => {
-        const address = response.results[0].formatted_address;
-        console.log("address1", address);
+    geocodeByLatLng({ lat: location.lat, lng: location.long })
+      .then((results) => {
+        console.log(results[0].formatted_address);
         setData((prevState) => ({
           ...prevState,
-          startDestination: address,
+          startDestination: results[0].formatted_address,
         }));
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-
-    // Get formatted address, city, state, country from latitude & longitude when
-    // Geocode.setLocationType("ROOFTOP") enabled
-    // the below parser will work for most of the countries
-    Geocode.fromLatLng(location.lat, location.long).then(
-      (response) => {
-        const address = response.results[0].formatted_address;
-        let city, state, country;
-        for (
-          let i = 0;
-          i < response.results[0].address_components.length;
-          i++
-        ) {
-          for (
-            let j = 0;
-            j < response.results[0].address_components[i].types.length;
-            j++
-          ) {
-            switch (response.results[0].address_components[i].types[j]) {
-              case "locality":
-                city = response.results[0].address_components[i].long_name;
-                break;
-              case "administrative_area_level_1":
-                state = response.results[0].address_components[i].long_name;
-                break;
-              case "country":
-                country = response.results[0].address_components[i].long_name;
-                break;
-            }
-          }
-        }
-        console.log(city, state, country);
-        console.log("address2", address);
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
+      })
+      .catch((error) => console.error(error));
+    console.log(value);
   }, [location]);
+  useEffect(() => {
+    if (value !== null) {
+      setData((prevState) => ({
+        ...prevState,
+        endDestination: value.label,
+      }));
+    }
+  }, [value]);
   const onSuggestionSelected = () => {
     // Add your business logic here. In this case we just log...
     console.log("Selected suggestion:");
@@ -103,33 +55,33 @@ const SlideUp = ({ place, show, onClick, onClick2, setData, location }) => {
                 }))
               }
             />
-            <span></span>
+            <span className={classes.formDiv_span}></span>
 
             <div className={classes.googlePlaces}>
               <GooglePlacesAutocomplete
-                apiKey="AIzaSyDrGNEbrjgK-a0HhOmQpveIOc-2S0GJhSs"
+                apiKey={process.env.REACT_APP_MAP_API_KEY}
                 autocompletionRequest={{
                   componentRestrictions: {
                     country: ["ng"],
                   },
                 }}
-                initialValue={address}
+                // initialValue={address}
                 selectProps={{
-                  address,
-                  onChange: setaddress,
+                  value,
+                  onChange: setValue,
                   placeholder: "Search Location",
                   styles: {
                     input: (provided) => ({
                       ...provided,
-                      color: "#12082D",
+                      color: "#222222",
                     }),
                     option: (provided) => ({
                       ...provided,
-                      color: "#12082D",
+                      color: "#222222",
                     }),
                     singleValue: (provided) => ({
                       ...provided,
-                      color: "#12082D",
+                      color: "#222222",
                     }),
                   },
                 }}
@@ -143,19 +95,11 @@ const SlideUp = ({ place, show, onClick, onClick2, setData, location }) => {
                 }}
               />
             </div>
-            {/* <input
-              type="text"
-              placeholder="Delivery point"
-              onChange={(e) =>
-                setData((prevState) => ({
-                  ...prevState,
-                  endDestination: e.target.value,
-                }))
-              }
-            /> */}
-            <div className={classes.btn}>
-              <ButtonBlue onClick={onClick2}>Continue</ButtonBlue>
-            </div>
+            {show && (
+              <div className={classes.btn}>
+                <ButtonBlue onClick={onClick2}>Continue</ButtonBlue>
+              </div>
+            )}
           </form>
         </div>
       </div>

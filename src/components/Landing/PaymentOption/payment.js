@@ -4,8 +4,7 @@ import Cash from "../../../assets/images/rideOption/cash.svg";
 import { ButtonGrey, ButtonBlue } from "../../UI/Button/button";
 import { useState } from "react";
 
-const Payment = ({ onClick, setOption, setData }) => {
-  const [select, setSelect] = useState(0);
+const Payment = ({ onClick, setOption, setData, setSelect, select }) => {
   const card = () => {
     setOption("Card");
     setSelect(1);

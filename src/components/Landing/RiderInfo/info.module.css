@@ -65,9 +65,10 @@
   align-items: center;
   justify-content: space-between;
 }
-.container > div:last-of-type {
-  width: 60%;
+.profile > div > p {
+  font-size: 12px;
 }
+
 .imgDiv img {
   width: 130px;
   height: 130px;
@@ -93,17 +94,19 @@
   top: -30px;
 }
 .contact {
-  margin: 20px 0;
-  display: flex;
+  margin-top: 10px;
+  /* display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
 }
 .riderLocation {
   margin: 20px 0;
 }
 .contact > div:first-of-type {
   display: flex;
-  gap: 10px;
+}
+.contact img {
+  margin-right: 15px;
 }
 .number {
   display: flex;
@@ -114,8 +117,7 @@
 }
 .share {
   display: flex;
-  border: 1px solid #407bff;
-  border-radius: 5px;
+  /* border-bottom: 1px solid #407bff; */
+  /* border-radius: 5px; */
   padding: 5px;
-  gap: 5px;
 }

@@ -36,6 +36,9 @@
   display: flex;
   align-items: center;
 }
+.options span{
+  font-size: 12px;
+}
 .options div p,
 .payment p {
   margin-left: 30px;

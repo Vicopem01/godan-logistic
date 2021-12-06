@@ -36,8 +36,8 @@ const Info = ({ onClick }) => {
             <div className={classes.imgDiv}>
               <img src={data.avatar} alt="" />
             </div>
-            <div>
-              <p>{data?.fullName?.toUpperCase()}</p>
+            <div className={classes.profile}>
+              <h3>{data?.fullName?.toUpperCase()}</h3>
               <p>Plate number: {data.vehiclePlateNumber}</p>
               <div>
                 <p>122 completed rides</p>
@@ -70,6 +70,7 @@ const Info = ({ onClick }) => {
                 <a href={`tel:${data.phoneNumber}`}>{data.phoneNumber}</a>
               </div>
             </div>
+            <br />
             <div className={classes.share}>
               <img src={Share} alt="" />
               <p>Share contact</p>

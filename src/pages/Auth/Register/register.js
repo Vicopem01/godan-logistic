@@ -10,8 +10,10 @@ import { registerNewUser } from "../../../services/apiCalls";
 import { toast } from "react-toastify";
 import ToastMessage from "../../../components/Toast/toast";
 import Arrow from "../../../assets/images/authentication/arrowLeft.svg";
+import Success from "../../../components/Auth/RegisterSuccess/success";
 
 const Register = ({ history }) => {
+  const [success, showSuccess] = useState(true);
   const [password, showPassword] = useState(true);
   const [loader, showLoader] = useState(false);
   const [focus, setFocus] = useState(0);
@@ -63,21 +65,30 @@ const Register = ({ history }) => {
         toast.success(
           "Account created sucessfully, check your mail for verification"
         );
-        history.push("/login");
+        showSuccess(true);
       } catch (error) {
         showLoader(false);
-        toast.error(<ToastMessage text="Error" message={error.message} />);
+        if (error.response) {
+          toast.error(
+            <ToastMessage text="Error" message={error.response.data.message} />
+          );
+        } else {
+          toast.error(<ToastMessage text="Error" message={error.message} />);
+        }
       }
     }
   };
 
   return (
     <main className={classes.main}>
+      {success && <Success />}
       <div>
         <Link to="/login">
-          <img src={Arrow} alt="" />
+          <img src={Arrow} alt="" className={classes.image} />
         </Link>
-        <p className="medium-text medium-weight">Create your account</p>
+        <p className={`medium-text medium-weight ${classes.ptext}`}>
+          Create your account
+        </p>
       </div>
       <form>
         <label
@@ -194,17 +205,19 @@ const Register = ({ history }) => {
             onClick={() => showConfirmPassword(!confirmPassword)}
           />
         </label>
-        <ButtonBlue onClick={signup}>
-          {loader ? (
-            <div>
+        {!success && (
+          <ButtonBlue onClick={signup}>
+            {loader ? (
               <div>
-                <Loader color="#ffffff" />
+                <div>
+                  <Loader color="#ffffff" />
+                </div>
               </div>
-            </div>
-          ) : (
-            "Register"
-          )}
-        </ButtonBlue>
+            ) : (
+              "Register"
+            )}
+          </ButtonBlue>
+        )}
         {/* <div className={classes.line}>
           <span></span>
           <p>or</p>

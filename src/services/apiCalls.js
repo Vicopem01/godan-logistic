@@ -27,16 +27,6 @@ export const verifyUserEmail = async (token) => {
   return response;
 };
 
-export const createNewOrder = async (data) => {
-  const response = await axios({
-    method: "POST",
-    url: `${baseUrl}/user/auth/booking`,
-    Authorization: `Bearer ${localStorage.getItem("token")}`,
-    data: data,
-  });
-  return response;
-};
-
 export const getAllAvailableRiders = async () => {
   const response = await axios({
     method: "GET",
@@ -70,12 +60,53 @@ export const getSingleUserInfo = async () => {
   return response;
 };
 
+export const createNewBooking = async (data) => {
+  const response = await axios({
+    method: "POST",
+    url: `${baseUrl}/user/auth/booking`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    data: data,
+  });
+  return response;
+};
+
+export const bookARider = async (riderId, bookingId) => {
+  const response = await axios({
+    method: "POST",
+    url: `${baseUrl}/user/auth/booking-rider/${riderId}`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    data: {
+      bookingId: bookingId,
+    },
+  });
+  return response;
+};
+
 export const getUserOrderHistory = async () => {
   const response = await axios({
     method: "GET",
     url: `${baseUrl}/user/auth/order-history`,
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return response;
+};
+
+export const getDistanceBetweenLocations = async (
+  startDestination,
+  endDestination
+) => {
+  const response = await axios({
+    method: "GET",
+    url: `maps/api/distancematrix/json?units=imperial&origins=${startDestination}&destinations=${endDestination}&key=${process.env.REACT_APP_MAP_API_KEY}`,
+    headers: {
+      accept: "application/json",
+      "Access-Control-Allow-Origin": "*",
     },
   });
   return response;

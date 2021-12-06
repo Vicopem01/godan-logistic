@@ -1,13 +1,8 @@
 import classes from "./rider.module.css";
 
 const Rider = ({ avatar, fullName, vehiclePlateNumber, onClick, _id }) => {
-  const getId = () => {
-    console.log(_id);
-    localStorage.setItem("_id", _id);
-    onClick();
-  };
   return (
-    <div className={classes.flexBox} onClick={getId}>
+    <div className={classes.flexBox} onClick={()=>onClick(_id)}>
       <div className={classes.box}>
         <img src={avatar} alt="" />
         <div className={classes.info}>

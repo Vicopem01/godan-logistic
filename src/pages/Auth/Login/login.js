@@ -49,7 +49,18 @@ const Login = ({ history }) => {
             history.push("/");
           } catch (error) {
             setLoader(false);
-            toast.error(<ToastMessage text="Error" message={error.message} />);
+            if (error.response) {
+              toast.error(
+                <ToastMessage
+                  text="Error"
+                  message={error.response.data.message}
+                />
+              );
+            } else {
+              toast.error(
+                <ToastMessage text="Error" message={error.message} />
+              );
+            }
           }
         }
       }

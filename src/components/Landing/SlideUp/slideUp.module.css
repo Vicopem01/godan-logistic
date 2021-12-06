@@ -10,6 +10,9 @@
   left: 0px;
   z-index: 1;
 }
+.show {
+  height: 85vh !important;
+}
 .sub {
   width: 90%;
   margin: auto;
@@ -26,9 +29,6 @@
 .top p {
   text-align: center;
 }
-.show {
-  height: 85vh;
-}
 .formDiv {
   margin-top: 3rem;
   background: rgba(64, 123, 255, 0.1);
@@ -37,16 +37,31 @@
   position: relative;
   padding: 10px 10px 10px 55px;
 }
-.formDiv input, .googlePlaces input {
+.formDiv input,
+.googlePlaces input {
   border: none;
-  padding: 20px;
+  padding: 12px;
   font-size: 15px;
   display: block;
   background: none;
   font-family: var(--sora);
   color: #222222;
+  width: 100%;
 }
-.formDiv span {
+.googlePlaces > div > div {
+  border: none;
+  background-color: transparent;
+}
+.googlePlaces span {
+  display: none !important;
+  height: 0px;
+  background: transparent !important;
+}
+.googlePlaces svg {
+  background: transparent !important;
+  display: none !important;
+}
+.formDiv_span {
   display: block;
   background: rgba(157, 168, 182, 0.2);
   height: 2px;
@@ -54,14 +69,15 @@
 }
 .formDiv img {
   position: absolute;
-  top: 40px;
-  left: 30px;
+  top: 22px;
+  left: 25px;
 }
 .formDiv input:focus {
+  background: #fff;
   outline: none;
 }
 
-.btn{
+.btn {
   width: 90%;
   position: fixed;
   bottom: 50px;

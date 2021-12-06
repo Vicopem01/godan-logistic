@@ -1,9 +1,12 @@
 import { LocationPin } from "../../../svgs";
 import { ButtonBlue, ButtonGrey } from "../../UI/Button/button";
 import classes from "./where.module.css";
+import { toast } from "react-toastify";
+import ToastMessage from "../../Toast/toast";
 
-const Where = ({ moveStep1, setLocation }) => {
+const Where = ({ moveStep1, setLocation, setLoad }) => {
   const getLocation = async () => {
+    setLoad(true);
     try {
       await navigator.geolocation.getCurrentPosition(function (position) {
         console.log("Latitude is :", position.coords.latitude);
@@ -15,8 +18,10 @@ const Where = ({ moveStep1, setLocation }) => {
         }));
       });
       moveStep1();
+      setLoad(false);
     } catch (error) {
-      console.log(error);
+      setLoad(false);
+      toast.error(<ToastMessage text="Error" message={error.message} />);
     }
   };
 

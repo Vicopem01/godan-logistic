@@ -63,16 +63,16 @@
 }
 .container {
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .profile > div > p {
   font-size: 12px;
 }
 
 .imgDiv img {
-  width: 130px;
-  height: 130px;
-  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
 }
 .imgDiv {
   flex-direction: column;

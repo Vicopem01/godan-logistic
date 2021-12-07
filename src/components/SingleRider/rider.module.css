@@ -16,15 +16,15 @@
   margin-left: 20px;
 }
 .box img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   border-radius: 5px;
 }
 .info p {
   font-size: 16px;
   font-weight: 500;
 }
-.info span {
+.info_span {
   font-size: 14px;
   font-weight: 300;
 }

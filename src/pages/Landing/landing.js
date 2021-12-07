@@ -45,16 +45,19 @@ const Landing = ({ history }) => {
     }
   };
   const createBooking = async () => {
+    setLoad(true);
     console.log(data);
     try {
       const res = await createNewBooking(data);
       setBookingId(res.data.booking._id);
       console.log(res.data.booking._id);
       setStage("stage4");
+      setLoad(false);
     } catch (error) {
       toast.error(
         <ToastMessage text="Error processing" message={error.message} />
       );
+      setLoad(false);
     }
   };
 
@@ -119,8 +122,12 @@ const Landing = ({ history }) => {
         )}
         {stage === "stage4" && (
           <>
-            <GetRiders price={data} setStage={setStage} bookingId={bookingId}
-            setSecondLoad={setLoad} />
+            <GetRiders
+              price={data}
+              setStage={setStage}
+              bookingId={bookingId}
+              setSecondLoad={setLoad}
+            />
           </>
         )}
         {stage === "stage5" && (

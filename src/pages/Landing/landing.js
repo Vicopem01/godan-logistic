@@ -68,10 +68,10 @@ const Landing = ({ history }) => {
     <>
       {load && <Loader />}
       {stage === "stage0" && <Onboarding onClick={() => setStage("stage1")} />}
-      <Map />
       <div>
         {stage === "stage1" && (
           <>
+          <Map />
             <Menu onClick={() => setSideBar(true)} />
             <SideBar
               sideBar={sideBar}
@@ -87,6 +87,7 @@ const Landing = ({ history }) => {
 
         {stage === "stage2" && (
           <>
+          <Map />
             <Menu onClick={() => setSideBar(true)} />
             <SideBar
               sideBar={sideBar}
@@ -105,20 +106,22 @@ const Landing = ({ history }) => {
         )}
         {stage === "stage3" && (
           <>
+          <Map />
             {!auth ? (
               <Redirect push to="/login?redirect=fetch-rider" />
-            ) : (
-              <Option
+              ) : (
+                <Option
                 onClick={createBooking}
                 setData={setData}
                 data={data}
                 setLoad={setLoad}
-              />
-            )}
+                />
+                )}
           </>
         )}
         {stage === "stage4" && (
           <>
+          <Map />
             <GetRiders
               price={data}
               setStage={setStage}
@@ -129,6 +132,7 @@ const Landing = ({ history }) => {
         )}
         {stage === "stage5" && (
           <>
+          <Map />
             <Menu onClick={() => setSideBar(true)} />
             <SideBar
               sideBar={sideBar}

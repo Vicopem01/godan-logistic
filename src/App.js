@@ -7,6 +7,7 @@ import Register from "./pages/Auth/Register/register";
 import Login from "./pages/Auth/Login/login";
 import Verify from "./pages/Auth/Verify/verify";
 import ForgotPassword from "./pages/Auth/ForgotPassword/forgot";
+import Error404 from "./pages/404/404";
 import { createAutoLogout } from "./services/functions";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/privacy-policy" exact component={Policy} />
         <ProtectedRoute path="/profile" exact component={Profile} />
         <ProtectedRoute path="/history" exact component={History} />
+        <Route path="/*" exact component={Error404} />
       </Switch>
     </>
   );

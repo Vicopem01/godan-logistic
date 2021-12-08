@@ -25,6 +25,9 @@ label {
   left: 50% !important;
   transform: translate(-50%, 0%) !important;
 }
+.typed-cursor {
+  color: #f94d53;
+}
 .first {
   color: #505dd1;
 }

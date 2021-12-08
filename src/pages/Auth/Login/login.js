@@ -10,13 +10,16 @@ import { login } from "../../../services/apiCalls";
 import Logo from "../../../assets/images/authentication/godan_logo.svg";
 import { Mail, Padlock } from "../../../constant";
 
-const Login = ({ history }) => {
+const Login = ({ history, location }) => {
   const [password, showPassword] = useState(true);
   const [loader, setLoader] = useState(false);
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   useEffect(() => {
     window.scrollTo(0, 0);
+    if (location.search === "?redirect=fetch-rider") {
+      toast.error(<ToastMessage text="Please login to continue" />);
+    }
   }, []);
   const handleLogin = async (evt) => {
     evt.preventDefault();

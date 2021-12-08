@@ -16,15 +16,20 @@ import ToastMessage from "../../Toast/toast";
 const SideBar = ({ sideBar, cancelSidebar, history }) => {
   const [data, setData] = useState({});
   useEffect(async () => {
-    try {
-      const res = await getSingleUserInfo();
-      setData(res.data.data);
-    } catch (error) {
-      toast.error(
-        <ToastMessage text="Error geting information" message={error.message} />
-      );
+    if (localStorage.getItem("token")) {
+      try {
+        const res = await getSingleUserInfo();
+        setData(res.data.data);
+      } catch (error) {
+        toast.error(
+          <ToastMessage
+            text="Error geting information"
+            message={error.message}
+          />
+        );
+      }
     }
-  }, [localStorage.getItem("token")]);
+  }, []);
   const authentication = localStorage.getItem("token");
   const handlelogout = () => {
     localStorage.removeItem("token");

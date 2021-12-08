@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-// import classes from "./landing.module.css";
+import { Redirect } from "react-router-dom";
 import Map from "../../components/Map/map";
 import Menu from "../../components/Landing/Menu/menu";
 import SideBar from "../../components/Landing/SideBar/sidebar";
@@ -14,10 +14,11 @@ import ToastMessage from "../../components/Toast/toast";
 import RiderInfo from "../../components/Landing/RiderInfo/info";
 import { createAutoLogout } from "../../services/functions";
 import Loader from "../../components/Loader/loader";
+import Onboarding from "../../components/Landing/Onboarding/onboarding";
 
 const Landing = ({ history }) => {
   const [sideBar, setSideBar] = useState(false);
-  const [stage, setStage] = useState("stage1");
+  const [stage, setStage] = useState("stage0");
   const [show, setShow] = useState(false);
   const [load, setLoad] = useState(false);
   const [bookingId, setBookingId] = useState("");
@@ -37,9 +38,11 @@ const Landing = ({ history }) => {
     const res = await createAutoLogout();
     setAuth(res);
   }, []);
-  const fillAddress = () => {
-    if (data.startDestination === "" || data.endDestination === null) {
-      toast.error("Input locations");
+  const fillAddress = (evt) => {
+    evt.preventDefault();
+    console.log(data);
+    if (data.startDestination === "" || data.endDestination === "") {
+      toast.error(<ToastMessage text="Input Destinations" />);
     } else {
       setStage("stage3");
     }
@@ -61,16 +64,10 @@ const Landing = ({ history }) => {
     }
   };
 
-  const goToLogin = () => {
-    console.log("111");
-    toast.error(<ToastMessage text="Please login to continue" />);
-    console.log("222");
-    history.push("/login");
-    console.log("333");
-  };
   return (
     <>
       {load && <Loader />}
+      {stage === "stage0" && <Onboarding onClick={() => setStage("stage1")} />}
       <Map />
       <div>
         {stage === "stage1" && (
@@ -109,7 +106,7 @@ const Landing = ({ history }) => {
         {stage === "stage3" && (
           <>
             {!auth ? (
-              goToLogin()
+              <Redirect push to="/login?redirect=fetch-rider" />
             ) : (
               <Option
                 onClick={createBooking}

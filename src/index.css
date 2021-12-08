@@ -25,3 +25,9 @@ label {
   left: 50% !important;
   transform: translate(-50%, 0%) !important;
 }
+.first {
+  color: #505dd1;
+}
+.second {
+  color: #f94d53;
+}

@@ -52,7 +52,7 @@ const Info = ({ onClick }) => {
               <p>
                 Please wait...
                 <br />
-                Rider is being notified
+              Awaiting rider's approval
               </p>
               <Loader />
             </div>

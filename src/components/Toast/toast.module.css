@@ -3,6 +3,13 @@
   flex-direction: column;
   row-gap: 10px;
   margin-left: 20px;
-  font-size: 15px;
   text-align: left;
+}
+
+.toast p:first-of-type {
+  font-size: 18px;
+  font-weight: bold;
+}
+.toast p:last-of-type {
+  font-size: 15px;
 }

@@ -1,6 +1,7 @@
 import classes from "./info.module.css";
 import { useEffect, useState } from "react";
-import { getSingleRider } from "../../../services/apiCalls";
+import { getSingleRider, getSingleOrderInfo } from "../../../services/apiCalls";
+import { playSound } from "../../../services/functions";
 import { toast } from "react-toastify";
 import ToastMessage from "../../Toast/toast";
 import Cancel from "../../../assets/images/landing/blueCancel.svg";
@@ -8,23 +9,61 @@ import Telephone from "../../../assets/images/landing/telephone_blue.svg";
 import Share from "../../../assets/images/landing/share.svg";
 import Loader from "../Loader/loader";
 import CancelModal from "../CancelRider/cancel";
+import Sound from "../../../assets/audio/orderAccepted.wav";
 
-const Info = ({ onClick }) => {
+const Info = ({ onClick, orderId }) => {
   const [data, setData] = useState({});
+  const [orderInfo, setOrderInfo] = useState({});
   const [popup, setPopup] = useState(false);
 
   useEffect(async () => {
     try {
       const res = await getSingleRider(localStorage.getItem("_id"));
-      console.log(res.data.data);
+      console.log(res.data);
       setData(res.data.data);
+      timer();
     } catch (error) {
-      toast.error(
-        <ToastMessage text="Error getting details" message={error.message} />
-      );
+      error.response
+        ? toast.error(
+            <ToastMessage
+              text="Error getting orders"
+              message={error.response.data.message}
+            />
+          )
+        : toast.error(
+            <ToastMessage text="Error getting orders" message={error.message} />
+          );
     }
   }, []);
 
+  useEffect(() => {
+    if (orderInfo?.deliveryStatus === "Awaiting-Pickup") {
+      playSound(Sound);
+    }
+  }, [orderInfo]);
+  const OrderInfo = async () => {
+    try {
+      const res = await getSingleOrderInfo(orderId);
+      console.log(res.data.orderHistory);
+      setOrderInfo(res.data.orderHistory);
+    } catch (error) {
+      error.response
+        ? toast.error(
+            <ToastMessage
+              text="Error getting orders"
+              message={error.response.data.message}
+            />
+          )
+        : toast.error(
+            <ToastMessage text="Error getting orders" message={error.message} />
+          );
+    }
+  };
+  const timer = () => {
+    setInterval(function () {
+      OrderInfo();
+    }, 10000);
+  };
   return (
     <div className={classes.background}>
       <div className={classes.main}>
@@ -49,11 +88,20 @@ const Info = ({ onClick }) => {
           </div>
           <div className={classes.loading}>
             <div>
-              <p>
-                Please wait...
-                <br />
-              Awaiting rider's approval
-              </p>
+              {orderInfo?.deliveryStatus !== "Pending" && (
+                <p>
+                  Order approved
+                  <br />
+                  Rider is on the way
+                </p>
+              )}
+              {orderInfo?.deliveryStatus === "Pending" && (
+                <p>
+                  Please wait...
+                  <br />
+                  Awaiting rider's approval
+                </p>
+              )}
               <Loader />
             </div>
           </div>

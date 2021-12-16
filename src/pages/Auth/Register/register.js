@@ -13,7 +13,7 @@ import Arrow from "../../../assets/images/authentication/arrowLeft.svg";
 import Success from "../../../components/Auth/RegisterSuccess/success";
 
 const Register = ({ history }) => {
-  const [success, showSuccess] = useState(true);
+  const [success, showSuccess] = useState(false);
   const [password, showPassword] = useState(true);
   const [loader, showLoader] = useState(false);
   const [focus, setFocus] = useState(0);

@@ -1,4 +1,4 @@
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import { GoogleApiWrapper } from "google-maps-react";
 import { useEffect } from "react";
 
 const Calculator = ({ google }) => {
@@ -55,6 +55,6 @@ const Calculator = ({ google }) => {
 };
 
 export default GoogleApiWrapper({
-  api: "AIzaSyAn3MKZaKiBWsJLIfurVvarCa-UjyOHMCo",
+  apiKey: process.env.REACT_APP_MAP_API_KEY,
 })(Calculator);
 // export default Calculator;

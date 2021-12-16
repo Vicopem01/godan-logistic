@@ -24,9 +24,16 @@ const Register = ({ history }) => {
       console.log(res.data.data);
       setData(res.data.data);
     } catch (error) {
-      toast.error(
-        <ToastMessage text="Error geting information" message={error.message} />
-      );
+      error.response
+        ? toast.error(
+            <ToastMessage
+              text="Error getting orders"
+              message={error.response.data.message}
+            />
+          )
+        : toast.error(
+            <ToastMessage text="Error getting orders" message={error.message} />
+          );
     }
   }, [localStorage.getItem("token")]);
   const handleLogout = () => {

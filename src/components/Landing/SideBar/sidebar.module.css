@@ -27,8 +27,8 @@
   opacity: 1;
   visibility: visible;
 }
-.visible > div:first-of-type {
-  width: 80%;
+.visible > div {
+  width: 85%;
 }
 .visible > div:last-of-type {
   width: 20%;
@@ -43,7 +43,7 @@
   width: 30px;
 } */
 .profile {
-  padding: 3rem 2rem 1rem 2rem;
+  padding: 3rem 0.5rem 1rem 0.5rem;
 }
 .profile > div {
   border: 1px solid #dadada;

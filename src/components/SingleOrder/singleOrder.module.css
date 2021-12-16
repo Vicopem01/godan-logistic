@@ -3,6 +3,8 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 35px;
+  width: 85%;
+  margin:30px  auto;
 }
 .price {
   display: flex;
@@ -10,7 +12,6 @@
   align-items: center;
 }
 .price p:last-of-type {
-  /* background: #e4f7f3; */
   color: #08a47d;
   font-weight: 500;
   border-radius: 5px;
@@ -20,6 +21,9 @@
 .price p:first-of-type {
   font-size: 13.5px;
   text-align: left;
+}
+.places p:first-of-type {
+  font-size: 16px;
 }
 .subContainer {
   border-radius: 0px 0px 10px 10px;
@@ -33,6 +37,7 @@
 .subContainer > div {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 18px 12px 12px 30px;
 }
 .places {

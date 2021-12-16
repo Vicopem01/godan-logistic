@@ -8,7 +8,6 @@ import WhereTo from "../../components/Landing/WhereTo/whereTo";
 import SlideUp from "../../components/Landing/SlideUp/slideUp";
 import Option from "../../components/Landing/RideOption/ride";
 import GetRiders from "../../components/Landing/GetRiders'/getRiders";
-import { createNewBooking } from "../../services/apiCalls";
 import { toast } from "react-toastify";
 import ToastMessage from "../../components/Toast/toast";
 import RiderInfo from "../../components/Landing/RiderInfo/info";
@@ -16,12 +15,12 @@ import { createAutoLogout } from "../../services/functions";
 import Loader from "../../components/Loader/loader";
 import Onboarding from "../../components/Landing/Onboarding/onboarding";
 
-const Landing = ({ history }) => {
+const Landing = () => {
   const [sideBar, setSideBar] = useState(false);
   const [stage, setStage] = useState("stage0");
   const [show, setShow] = useState(false);
+  const [orderId, setOrderId] = useState("");
   const [load, setLoad] = useState(false);
-  const [bookingId, setBookingId] = useState("");
   const [data, setData] = useState({
     startDestination: "",
     endDestination: "",
@@ -38,6 +37,11 @@ const Landing = ({ history }) => {
     const res = await createAutoLogout();
     setAuth(res);
   }, []);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      setStage("stage1");
+    }
+  }, []);
   const fillAddress = (evt) => {
     evt.preventDefault();
     console.log(data);
@@ -45,22 +49,6 @@ const Landing = ({ history }) => {
       toast.error(<ToastMessage text="Input Destinations" />);
     } else {
       setStage("stage3");
-    }
-  };
-  const createBooking = async () => {
-    setLoad(true);
-    console.log(data);
-    try {
-      const res = await createNewBooking(data);
-      setBookingId(res.data.booking._id);
-      console.log(res.data.booking._id);
-      setStage("stage4");
-      setLoad(false);
-    } catch (error) {
-      toast.error(
-        <ToastMessage text="Error processing" message={error.message} />
-      );
-      setLoad(false);
     }
   };
 
@@ -71,7 +59,7 @@ const Landing = ({ history }) => {
       <div>
         {stage === "stage1" && (
           <>
-          <Map />
+            <Map />
             <Menu onClick={() => setSideBar(true)} />
             <SideBar
               sideBar={sideBar}
@@ -87,7 +75,7 @@ const Landing = ({ history }) => {
 
         {stage === "stage2" && (
           <>
-          <Map />
+            <Map />
             <Menu onClick={() => setSideBar(true)} />
             <SideBar
               sideBar={sideBar}
@@ -106,39 +94,39 @@ const Landing = ({ history }) => {
         )}
         {stage === "stage3" && (
           <>
-          <Map />
-            {!auth ? (
-              <Redirect push to="/login?redirect=fetch-rider" />
-              ) : (
-                <Option
-                onClick={createBooking}
-                setData={setData}
-                data={data}
-                setLoad={setLoad}
-                />
-                )}
+            <Map />
+            <Option
+              onClick={() => setStage("stage4")}
+              setData={setData}
+              data={data}
+              setLoad={setLoad}
+            />
           </>
         )}
         {stage === "stage4" && (
           <>
-          <Map />
-            <GetRiders
-              price={data}
-              setStage={setStage}
-              bookingId={bookingId}
-              setSecondLoad={setLoad}
-            />
+            <Map />
+            {!auth ? (
+              <Redirect push to="/login?redirect=fetch-rider" />
+            ) : (
+              <GetRiders
+                data={data}
+                setStage={setStage}
+                setSecondLoad={setLoad}
+                setOrderId={setOrderId}
+              />
+            )}
           </>
         )}
         {stage === "stage5" && (
           <>
-          <Map />
+            <Map />
             <Menu onClick={() => setSideBar(true)} />
             <SideBar
               sideBar={sideBar}
               cancelSidebar={() => setSideBar(false)}
             />
-            <RiderInfo onClick={() => setStage("stage4")} />
+            <RiderInfo onClick={() => setStage("stage4")} orderId={orderId} />
           </>
         )}
       </div>

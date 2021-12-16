@@ -97,16 +97,31 @@ export const getUserOrderHistory = async () => {
   return response;
 };
 
+export const getSingleOrderInfo = async (id) => {
+  const response = await axios({
+    method: "GET",
+    url: `${baseUrl}/user/auth/order-history/${id}`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return response;
+};
+
 export const getDistanceBetweenLocations = async (
   startDestination,
   endDestination
 ) => {
   const response = await axios({
     method: "GET",
-    url: `maps/api/distancematrix/json?units=imperial&origins=${startDestination}&destinations=${endDestination}&key=${process.env.REACT_APP_MAP_API_KEY}`,
+    url: `/maps/api/distancematrix/json?units=imperial&origins=${startDestination}&destinations=${endDestination}&key=${process.env.REACT_APP_MAP_API_KEY}`,
     headers: {
       accept: "application/json",
       "Access-Control-Allow-Origin": "*",
+    },
+    proxy: {
+      host: "https://maps.googleapis.com",
+      port: 3000,
     },
   });
   return response;

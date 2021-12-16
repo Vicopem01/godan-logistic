@@ -8,8 +8,9 @@ import Payment from "../PaymentOption/payment";
 import { toast } from "react-toastify";
 import ToastMessage from "../../Toast/toast";
 import { getDistanceBetweenLocations } from "../../../services/apiCalls";
+import Calculator from "../../DistanceCalculator/calculator";
 
-const Ride = ({ onClick, setData, data, setLoad }) => {
+const Option = ({ onClick, setData, data, setLoad }) => {
   const [bg, setBg] = useState(0);
   const [payment, setPayment] = useState(false);
   const [option, setOption] = useState("");
@@ -17,24 +18,18 @@ const Ride = ({ onClick, setData, data, setLoad }) => {
 
   useEffect(async () => {
     setLoad(true);
-    console.log(data);
     try {
-      console.log(
-        encodeURI(data.startDestination),
-        encodeURI(data.endDestination)
-      );
       const res = await getDistanceBetweenLocations(
         encodeURI(data.startDestination),
         encodeURI(data.endDestination)
       );
-      console.log(res.data.rows[0].elements[0].distance.value);
       setData((prevState) => ({
         ...prevState,
         distance: res.data.rows[0].elements[0].distance.value,
       }));
       setLoad(false);
     } catch (error) {
-      setLoad(false)
+      setLoad(false);
       error.response
         ? toast.error(
             <ToastMessage
@@ -86,7 +81,7 @@ const Ride = ({ onClick, setData, data, setLoad }) => {
             <Bike />
             <p>GoDan Bike</p>
           </div>
-          <p>₦ {data.distance / 10}</p>
+          <p>₦ {(data.distance / 10).toLocaleString()}</p>
         </div>
         <div
           className={`${classes.options} ${bg === 2 ? classes.bg : ""}`}
@@ -138,4 +133,4 @@ const Ride = ({ onClick, setData, data, setLoad }) => {
   );
 };
 
-export default Ride;
+export default Option;

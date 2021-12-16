@@ -11,6 +11,10 @@ export const emailCheck = (value) => {
   return regex.test(value);
 };
 
+export const playSound = (url) => {
+  const audio = new Audio(url);
+  audio.play();
+};
 
 export const createAutoLogout = () => {
   const token = localStorage.getItem("token");

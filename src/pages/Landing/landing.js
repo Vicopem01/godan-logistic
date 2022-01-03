@@ -88,7 +88,6 @@ const Landing = () => {
               onClick={() => setShow(false)}
               onClick2={fillAddress}
               location={location}
-              place={data.startDestination}
             />
           </>
         )}

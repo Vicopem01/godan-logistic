@@ -9,8 +9,6 @@ const Where = ({ moveStep1, setLocation, setLoad }) => {
     setLoad(true);
     try {
       await navigator.geolocation.getCurrentPosition(function (position) {
-        console.log("Latitude is :", position.coords.latitude);
-        console.log("Longitude is :", position.coords.longitude);
         setLocation((prevState) => ({
           ...prevState,
           lat: position.coords.latitude,

@@ -16,15 +16,15 @@
 .sub {
   width: 90%;
   margin: auto;
-  padding-top: 3rem;
+  padding-top: 2rem;
 }
 .top {
   position: relative;
 }
 .top img {
   position: absolute;
-  top: 0px;
-  left: 10px;
+  top: -5px;
+  right: 10px;
 }
 .top p {
   text-align: center;
@@ -51,6 +51,10 @@
 .googlePlaces > div > div {
   border: none;
   background-color: transparent;
+}
+.googlePlaces > div > div:nth-child(3){
+  /* border: none; */
+  background-color:#fff;
 }
 .googlePlaces span {
   display: none !important;

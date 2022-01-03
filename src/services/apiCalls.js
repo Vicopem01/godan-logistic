@@ -119,10 +119,10 @@ export const getDistanceBetweenLocations = async (
       accept: "application/json",
       "Access-Control-Allow-Origin": "*",
     },
-    proxy: {
-      host: "https://maps.googleapis.com",
-      port: 3000,
-    },
+    // proxy: {
+    //   host: "https://maps.googleapis.com",
+      // port: 3000,
+    // },
   });
   return response;
 };

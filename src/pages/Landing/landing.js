@@ -7,7 +7,7 @@ import Where from "../../components/Landing/Where_Are_You/where";
 import WhereTo from "../../components/Landing/WhereTo/whereTo";
 import SlideUp from "../../components/Landing/SlideUp/slideUp";
 import Option from "../../components/Landing/RideOption/ride";
-import GetRiders from "../../components/Landing/GetRiders'/getRiders";
+import GetRiders from "../../components/Landing/GetRiders/getRiders";
 import { toast } from "react-toastify";
 import ToastMessage from "../../components/Toast/toast";
 import RiderInfo from "../../components/Landing/RiderInfo/info";

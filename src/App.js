@@ -2,6 +2,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import Landing from "./pages/Landing/landing";
 import Profile from "./pages/Profile/profile";
 import Policy from "./pages/Policy/policy";
+import AboutUs from "./pages/AboutUs/about";
 import History from "./pages/DeliveryHistory/history";
 import Register from "./pages/Auth/Register/register";
 import Login from "./pages/Auth/Login/login";
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/forgot-password" exact component={ForgotPassword} />
         <Route path="/auth/email/verify" exact component={Verify} />
         <Route path="/privacy-policy" exact component={Policy} />
+        <Route path="/about-us" exact component={AboutUs} />
         <ProtectedRoute path="/profile" exact component={Profile} />
         <ProtectedRoute path="/history" exact component={History} />
         <Route path="/*" exact component={Error404} />

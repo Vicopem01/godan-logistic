@@ -36,12 +36,6 @@
 .subMain {
   height: 100vh;
 }
-/* .subMain > img {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  width: 30px;
-} */
 .profile {
   padding: 3rem 0.5rem 1rem 0.5rem;
 }
@@ -69,6 +63,14 @@
 .links > div img {
   margin-right: 15px;
 }
+/* .links .about{
+  width: 34px;
+  height: 34px;
+}
+.links img{
+  width: 24px;
+  height: 24px;
+} */
 .links > div span{
   color: #fff;
   font-size: 12px;

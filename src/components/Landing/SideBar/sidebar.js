@@ -4,7 +4,7 @@ import Promotion from "../../../assets/images/sidebar/promotion.svg";
 import Tag from "../../../assets/images/sidebar/tag.svg";
 import Cart from "../../../assets/images/sidebar/cart.svg";
 import Profile from "../../../assets/images/sidebar/profile.svg";
-import Tour from "../../../assets/images/sidebar/tour.svg";
+import About from "../../../assets/images/sidebar/about.svg";
 import Padlock from "../../../assets/images/sidebar/padlock.svg";
 import { ButtonWhite } from "../../UI/Button/button";
 import { Link, withRouter } from "react-router-dom";
@@ -87,9 +87,9 @@ const SideBar = ({ sideBar, cancelSidebar, history }) => {
                 <p>Promotions</p>
                 <span>(coming soon)</span>
               </div>
-              <Link>
-                <img src={Tour} alt="" />
-                <p>Site Map</p>
+              <Link to="/about-us">
+                <img src={About} alt="" className={classes.about} />
+                <p>About Us</p>
               </Link>
               <Link to="/privacy-policy">
                 <img src={Padlock} alt="" />

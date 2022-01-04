@@ -8,7 +8,7 @@ import {
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import ToastMessage from "../../Toast/toast";
-import Loader from "../../../components/Loader/loader";
+import Loader from "../../Loader/loader";
 
 const GetRiders = ({ setStage, setSecondLoad, data, setOrderId }) => {
   const [arr, setArr] = useState([]);

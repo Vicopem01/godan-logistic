@@ -93,18 +93,17 @@ const Landing = () => {
         )}
         {stage === "stage3" && (
           <>
-            <Map />
             <Option
               setStage={setStage}
               setData={setData}
               data={data}
               setLoad={setLoad}
             />
+            <Map />
           </>
         )}
         {stage === "stage4" && (
           <>
-            <Map />
             {!auth ? (
               <Redirect push to="/login?redirect=fetch-rider" />
             ) : (
@@ -115,17 +114,18 @@ const Landing = () => {
                 setOrderId={setOrderId}
               />
             )}
+            <Map />
           </>
         )}
         {stage === "stage5" && (
           <>
-            <Map />
             <Menu onClick={() => setSideBar(true)} />
             <SideBar
               sideBar={sideBar}
               cancelSidebar={() => setSideBar(false)}
             />
             <RiderInfo onClick={() => setStage("stage4")} orderId={orderId} />
+            <Map />
           </>
         )}
       </div>

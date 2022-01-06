@@ -1,5 +1,4 @@
 import GoogleMapReact from "google-map-react";
-import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
@@ -73,8 +72,5 @@ const SimpleMap = ({ google }) => {
 };
 // }
 
-// export default GoogleApiWrapper({
-//   api: "AIzaSyAn3MKZaKiBWsJLIfurVvarCa-UjyOHMCo",
-// })(SimpleMap);
 
 export default SimpleMap;

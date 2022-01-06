@@ -33,6 +33,7 @@ const SlideUp = ({
         console.error(error);
         setLoad(false);
       });
+      console.log(start)
   }, [location]);
   useEffect(() => {
     end === ""

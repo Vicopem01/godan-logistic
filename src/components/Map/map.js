@@ -2,8 +2,8 @@ import GoogleMapReact from "google-map-react";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-const SimpleMap = ({ google }) => {
-  const mapOptions = (maps: Maps) => {
+const SimpleMap = () => {
+  const mapOptions = () => {
     return {
       streetViewControl: false,
       scaleControl: true,
@@ -26,15 +26,15 @@ const SimpleMap = ({ google }) => {
 
       mapTypeControl: true,
       //   mapTypeId: maps.MapTypeId.SATELLITE,
-      mapTypeControlOptions: {
-        style: maps.MapTypeControlStyle.HORIZONTAL_BAR,
-        position: maps.ControlPosition.BOTTOM_CENTER,
-        mapTypeIds: [
-          maps.MapTypeId.ROADMAP,
-          maps.MapTypeId.SATELLITE,
-          maps.MapTypeId.HYBRID,
-        ],
-      },
+      // mapTypeControlOptions: {
+      //   style: maps.MapTypeControlStyle.HORIZONTAL_BAR,
+      //   position: maps.ControlPosition.BOTTOM_CENTER,
+      //   mapTypeIds: [
+      //     maps.MapTypeId.ROADMAP,
+      //     maps.MapTypeId.SATELLITE,
+      //     maps.MapTypeId.HYBRID,
+      //   ],
+      // },
 
       zoomControl: true,
       clickableIcons: false,
@@ -64,7 +64,7 @@ const SimpleMap = ({ google }) => {
         defaultZoom={defaultProps.zoom}
         options={mapOptions}
       >
-        <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" />
+        {/* <AnyReactComponent lat={59.955413} lng={30.337844} text="My Marker" /> */}
       </GoogleMapReact>
       {/* <Map google={google} style={style} center={center} zoom={15}></Map> */}
     </div>

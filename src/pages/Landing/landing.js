@@ -54,12 +54,14 @@ const Landing = () => {
 
   return (
     <>
+        <Map />
+
       {load && <Loader />}
       {stage === "stage0" && <Onboarding onClick={() => setStage("stage1")} />}
       <div>
         {stage === "stage1" && (
           <>
-            <Map />
+            {/* <Map /> */}
             <Menu onClick={() => setSideBar(true)} />
             <SideBar
               sideBar={sideBar}
@@ -75,7 +77,7 @@ const Landing = () => {
 
         {stage === "stage2" && (
           <>
-            <Map />
+            {/* <Map /> */}
             <Menu onClick={() => setSideBar(true)} />
             <SideBar
               sideBar={sideBar}
@@ -94,12 +96,11 @@ const Landing = () => {
         {stage === "stage3" && (
           <>
             <Option
-              setStage={setStage}
+              move={()=>setStage("stage4")}
               setData={setData}
               data={data}
-              setLoad={setLoad}
             />
-            <Map />
+            {/* <Map /> */}
           </>
         )}
         {stage === "stage4" && (
@@ -114,7 +115,7 @@ const Landing = () => {
                 setOrderId={setOrderId}
               />
             )}
-            <Map />
+            {/* <Map /> */}
           </>
         )}
         {stage === "stage5" && (
@@ -125,7 +126,7 @@ const Landing = () => {
               cancelSidebar={() => setSideBar(false)}
             />
             <RiderInfo onClick={() => setStage("stage4")} orderId={orderId} />
-            <Map />
+            {/* <Map /> */}
           </>
         )}
       </div>

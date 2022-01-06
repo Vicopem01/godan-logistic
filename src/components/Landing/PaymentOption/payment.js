@@ -4,7 +4,7 @@ import Cash from "../../../assets/images/rideOption/cash.svg";
 import { ButtonGrey, ButtonBlue } from "../../UI/Button/button";
 import { useState } from "react";
 
-const Payment = ({ oncclick, setOption, setData, setSelect, select }) => {
+const Payment = ({ setPayment, setOption, setData, setSelect, select }) => {
   const card = () => {
     setOption("Card");
     setSelect(1);
@@ -44,7 +44,7 @@ const Payment = ({ oncclick, setOption, setData, setSelect, select }) => {
           ></span>
         </div>
         {select === 0 && <ButtonGrey>Continue</ButtonGrey>}
-        {select > 0 && <ButtonBlue onClick={oncclick}>Continue</ButtonBlue>}
+        {select > 0 && <ButtonBlue onClick={setPayment}>Continue</ButtonBlue>}
       </div>
     </div>
   );

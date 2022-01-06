@@ -7,14 +7,15 @@ import { ButtonGrey, ButtonBlue } from "../../UI/Button/button";
 import Payment from "../PaymentOption/payment";
 import Calculator from "../../DistanceCalculator/calculator";
 
-const Option = ({setStage, setData, data }) => {
+const Option = ({ move, setData, data }) => {
   const [bg, setBg] = useState(0);
   const [payment, setPayment] = useState(false);
   const [option, setOption] = useState("");
   const [select, setSelect] = useState(0);
   const [value, setValue] = useState(null);
 
-  const bike = () => {
+  const bike = (evt) => {
+    evt.stopPropagation();
     setBg(1);
     setData((prevState) => ({
       ...prevState,
@@ -40,77 +41,79 @@ const Option = ({setStage, setData, data }) => {
       ...prevState,
       distance: value,
     }));
-    setStage("stage4");
-    console.log(data)
+    console.log(data);
+    move();
   };
   return (
     <>
-      <div className={classes.destination}>
-        <Calculator data={data} setValue={setValue} />
-        <span></span>
-        <p>Choose your preferred ride option</p>
-        <div className={classes.main}>
-          <div
-            className={`${classes.options} ${bg === 1 ? classes.bg : ""}`}
-            onClick={bike}
-          >
-            <div>
-              <Bike />
-              <p>GoDan Bike</p>
+      <div className={classes.container}>
+        <div className={classes.destination}>
+          <Calculator data={data} setValue={setValue} />
+          <span></span>
+          <p>Choose your preferred ride option</p>
+          <div className={classes.main}>
+            <div
+              className={`${classes.options} ${bg === 1 ? classes.bg : ""}`}
+              onClick={bike}
+            >
+              <div>
+                <Bike />
+                <p>GoDan Bike</p>
+              </div>
+              <p>₦ {(value / 10)?.toLocaleString()}</p>
+              {/* <p>₦ {(data?.distance / 10)?.toLocaleString()}</p> */}
             </div>
-            <p>₦ {(value / 10)?.toLocaleString()}</p>
-            {/* <p>₦ {(data?.distance / 10)?.toLocaleString()}</p> */}
-          </div>
-          <div
-            className={`${classes.options} ${bg === 2 ? classes.bg : ""}`}
-            // onClick={car}
-          >
-            <div>
-              <Car />
-              <p>GoDan Car</p>
+            <div
+              className={`${classes.options} ${bg === 2 ? classes.bg : ""}`}
+              // onClick={car}
+            >
+              <div>
+                <Car />
+                <p>GoDan Car</p>
+              </div>
+              <span>coming soon</span>
             </div>
-            <span>coming soon</span>
-          </div>
-          <div
-            className={`${classes.options} ${bg === 3 ? classes.bg : ""}`}
-            // onClick={truck}
-          >
-            <div>
-              <Truck />
-              <p>GoDan Truck</p>
+            <div
+              className={`${classes.options} ${bg === 3 ? classes.bg : ""}`}
+              // onClick={truck}
+            >
+              <div>
+                <Truck />
+                <p>GoDan Truck</p>
+              </div>
+              <span>coming soon</span>
             </div>
-            <span>coming soon</span>
           </div>
+          <span className={classes.line}></span>
+          <div className={classes.sub}>
+            <div className={classes.payment} onClick={() => setPayment(true)}>
+              <div>
+                <img src={Card} alt="" />
+                <p>Choose payment method</p>
+              </div>
+              {option === "" && <img src={Arrow} alt="" />}
+              {option === "Cash" && <p>Cash</p>}
+              {option === "Card" && <p>Card</p>}
+            </div>
+          </div>
+          {payment && (
+            <Payment
+              setPayment={() => setPayment(false)}
+              setOption={setOption}
+              setData={setData}
+              setSelect={setSelect}
+              select={select}
+            />
+          )}
+          {option === "" || bg == 0 ? (
+            <ButtonGrey>Confirm options</ButtonGrey>
+          ) : (
+            ""
+          )}
+          {bg > 0 && option !== "" && (
+            <ButtonBlue onClick={oncclick}>Confirm options</ButtonBlue>
+          )}
         </div>
-        <span className={classes.line}></span>
-        <div className={classes.sub}>
-          <div className={classes.payment} onClick={() => setPayment(true)}>
-            <div>
-              <img src={Card} alt="" />
-              <p>Choose payment method</p>
-            </div>
-            {option === "" && <img src={Arrow} alt="" />}
-            {option === "Cash" && <p>Cash</p>}
-            {option === "Card" && <p>Card</p>}
-          </div>
-        </div>
-        {payment && (
-          <Payment
-            oncclick={() => setPayment(false)}
-            setOption={setOption}
-            setData={setData}
-            setSelect={setSelect}
-            select={select}
-          />
-        )}
-        {option === "" || bg == 0 ? (
-          <ButtonGrey>Confirm options</ButtonGrey>
-        ) : (
-          ""
-        )}
-        {bg > 0 && option !== "" && (
-          <ButtonBlue onClick={oncclick}>Confirm options</ButtonBlue>
-        )}
       </div>
     </>
   );

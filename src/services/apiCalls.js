@@ -108,21 +108,3 @@ export const getSingleOrderInfo = async (id) => {
   return response;
 };
 
-export const getDistanceBetweenLocations = async (
-  startDestination,
-  endDestination
-) => {
-  const response = await axios({
-    method: "GET",
-    url: `/maps/api/distancematrix/json?units=imperial&origins=${startDestination}&destinations=${endDestination}&key=${process.env.REACT_APP_MAP_API_KEY}`,
-    headers: {
-      accept: "application/json",
-      "Access-Control-Allow-Origin": "*",
-    },
-    // proxy: {
-    //   host: "https://maps.googleapis.com",
-      // port: 3000,
-    // },
-  });
-  return response;
-};

@@ -95,7 +95,7 @@ const Landing = () => {
           <>
             <Map />
             <Option
-              onClick={() => setStage("stage4")}
+              setStage={setStage}
               setData={setData}
               data={data}
               setLoad={setLoad}

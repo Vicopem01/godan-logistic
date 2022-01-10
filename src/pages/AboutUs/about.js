@@ -94,6 +94,7 @@ const Policy = () => {
           </div>
         </div>
       </div>
+      <footer className={classes.footer}>Godan Logistics © copyright2022</footer>
     </main>
   );
 };

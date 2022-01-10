@@ -13,7 +13,6 @@
   border-radius: 20px 20px 0 0;
   height: 100%;
   color: #444444;
-  margin-bottom: 50px;
 }
 .whitebg h2 {
   text-align: center;
@@ -52,7 +51,7 @@
   color: #407bff;
   text-decoration: underline;
 }
-.socials div{
+.socials div {
   max-width: 70%;
   margin: auto;
   display: flex;
@@ -64,6 +63,12 @@
   height: 24px;
   margin: 10px;
 }
-.location{
+.location {
   padding: 15px 0;
+}
+.footer {
+  font-size: 12px;
+  color: #000000;
+  text-align: center;
+  padding-bottom: 20px;
 }

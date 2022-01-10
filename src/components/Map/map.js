@@ -3,7 +3,7 @@ import GoogleMapReact from "google-map-react";
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 const SimpleMap = () => {
-  const mapOptions = () => {
+  const mapOptions = (maps) => {
     return {
       streetViewControl: false,
       scaleControl: true,
@@ -26,15 +26,15 @@ const SimpleMap = () => {
 
       mapTypeControl: true,
       //   mapTypeId: maps.MapTypeId.SATELLITE,
-      // mapTypeControlOptions: {
-      //   style: maps.MapTypeControlStyle.HORIZONTAL_BAR,
-      //   position: maps.ControlPosition.BOTTOM_CENTER,
+      mapTypeControlOptions: {
+        style: maps.MapTypeControlStyle.HORIZONTAL_BAR,
+        position: maps.ControlPosition.TOP_CENTER,
       //   mapTypeIds: [
       //     maps.MapTypeId.ROADMAP,
       //     maps.MapTypeId.SATELLITE,
       //     maps.MapTypeId.HYBRID,
       //   ],
-      // },
+      },
 
       zoomControl: true,
       clickableIcons: false,

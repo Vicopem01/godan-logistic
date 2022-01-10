@@ -19,11 +19,16 @@
   text-align: center;
   text-transform: capitalize;
   font-size: 20px;
-  margin-bottom: 20px;
   text-decoration: underline;
-
 }
-.main > div img {
+.whitebg h4 {
+  text-align: center;
+  padding: 20px 0;
+}
+.whitebg p {
+  text-align: center;
+}
+.arrow {
   position: absolute;
   top: 51px;
   left: 20px;
@@ -39,7 +44,26 @@
 .whitebg p {
   width: 85%;
   margin: auto;
-  text-align: left;
   font-size: 14px;
   padding-bottom: 2rem;
+}
+.socials {
+  font-size: 14px;
+  color: #407bff;
+  text-decoration: underline;
+}
+.socials div{
+  max-width: 70%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.socials img {
+  width: 24px;
+  height: 24px;
+  margin: 10px;
+}
+.location{
+  padding: 15px 0;
 }

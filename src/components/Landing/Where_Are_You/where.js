@@ -3,24 +3,49 @@ import { ButtonBlue, ButtonGrey } from "../../UI/Button/button";
 import classes from "./where.module.css";
 import { toast } from "react-toastify";
 import ToastMessage from "../../Toast/toast";
+import geolocation from "geolocation";
+import Geocode from "react-geocode";
 
-const Where = ({ moveStep1, setLocation, setLoad }) => {
+const Where = ({ moveStep1, setLoad, setData, data, locationArr }) => {
+  const place = [];
+  Geocode.setApiKey(process.env.REACT_APP_MAP_API_KEY);
+  Geocode.setLanguage("en");
+  Geocode.setRegion("ng");
+  Geocode.setLocationType("ROOFTOP");
+  Geocode.enableDebug();
+  const getCoords = () => {
+    return new Promise((resolve, reject) => {
+      geolocation.getCurrentPosition(function (err, position) {
+        if (err) {
+          setLoad(false);
+          toast.error(<ToastMessage text="Error" message={err.message} />);
+        }
+        Geocode.fromLatLng(
+          position.coords.latitude,
+          position.coords.longitude
+        ).then(
+          (response) => {
+            const address = response.results[0].formatted_address;
+            setData(prevState => ({
+              ...prevState,
+              startDestination: address,
+            }));
+            resolve(response);
+          },
+          (error) => {
+            console.error("error");
+            reject(error);
+          }
+        );
+      });
+    });
+  };
+
   const getLocation = async () => {
     setLoad(true);
-    try {
-      await navigator.geolocation.getCurrentPosition(function (position) {
-        setLocation((prevState) => ({
-          ...prevState,
-          lat: position.coords.latitude,
-          long: position.coords.longitude,
-        }));
-      });
-      moveStep1();
-      setLoad(false);
-    } catch (error) {
-      setLoad(false);
-      toast.error(<ToastMessage text="Error" message={error.message} />);
-    }
+    const res = await getCoords();
+    setLoad(false);
+    moveStep1();
   };
 
   return (

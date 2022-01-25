@@ -29,10 +29,7 @@ const Landing = () => {
     vehicleCategory: "",
   });
   const [auth, setAuth] = useState(false);
-  const [location, setLocation] = useState({
-    lat: "",
-    long: "",
-  });
+
   useEffect(async () => {
     const res = await createAutoLogout();
     setAuth(res);
@@ -66,9 +63,10 @@ const Landing = () => {
               cancelSidebar={() => setSideBar(false)}
             />
             <Where
-              moveStep1={() => setStage("stage2")}
-              setLocation={setLocation}
               setLoad={setLoad}
+              data={data}
+              setData={setData}
+              moveStep1={() => setStage("stage2")}
             />
           </>
         )}
@@ -87,14 +85,14 @@ const Landing = () => {
               setData={setData}
               onClick={() => setShow(false)}
               onClick2={fillAddress}
-              location={location}
+              data={data}
             />
           </>
         )}
         {stage === "stage3" && (
           <>
             <Option
-              move={()=>setStage("stage4")}
+              move={() => setStage("stage4")}
               setData={setData}
               data={data}
             />

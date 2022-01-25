@@ -1,6 +1,6 @@
 import classes from "./whereTo.module.css";
 import Search from "../../../assets/images/landing/search.svg";
-
+import { useEffect } from "react";
 
 const Destination = ({ onClick }) => {
   return (

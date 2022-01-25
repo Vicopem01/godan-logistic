@@ -20,6 +20,7 @@ const Landing = () => {
   const [stage, setStage] = useState("stage0");
   const [show, setShow] = useState(false);
   const [orderId, setOrderId] = useState("");
+  const [riderId, setriderId] = useState("");
   const [load, setLoad] = useState(false);
   const [data, setData] = useState({
     startDestination: "",
@@ -40,7 +41,7 @@ const Landing = () => {
     }
   }, []);
   const fillAddress = (evt) => {
-    evt.preventDefault();
+    // evt.preventDefault();
     console.log(data);
     if (data.startDestination === "" || data.endDestination === "") {
       toast.error(<ToastMessage text="Input Destinations" />);
@@ -109,6 +110,7 @@ const Landing = () => {
                 setStage={setStage}
                 setSecondLoad={setLoad}
                 setOrderId={setOrderId}
+                setriderId={setriderId}
               />
             )}
             <Map />
@@ -121,7 +123,11 @@ const Landing = () => {
               sideBar={sideBar}
               cancelSidebar={() => setSideBar(false)}
             />
-            <RiderInfo onClick={() => setStage("stage4")} orderId={orderId} />
+            <RiderInfo
+              onClick={() => setStage("stage4")}
+              orderId={orderId}
+              riderId={riderId}
+            />
             <Map />
           </>
         )}

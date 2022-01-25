@@ -11,23 +11,28 @@ import Loader from "../Loader/loader";
 import CancelModal from "../CancelRider/cancel";
 import Sound from "../../../assets/audio/orderAccepted.wav";
 
-const Info = ({ onClick, orderId }) => {
+const Info = ({ onClick, orderId,riderId }) => {
   const [data, setData] = useState({});
   const [orderInfo, setOrderInfo] = useState({});
   const [popup, setPopup] = useState(false);
 
   useEffect(async () => {
+    console.log("11111")
     try {
-      const res = await getSingleRider(localStorage.getItem("_id"));
+      console.log("222222")
+      const res = await getSingleRider(riderId);
       console.log(res.data);
+      console.log("33333")
       setData(res.data.data);
       timer();
+      console.log("444444")
     } catch (error) {
+      console.log("55555")
       error.response
-        ? toast.error(
-            <ToastMessage
-              text="Error getting orders"
-              message={error.response.data.message}
+      ? toast.error(
+        <ToastMessage
+        text="Error getting orders"
+        message={error.response.data.message}
             />
           )
         : toast.error(

@@ -10,7 +10,13 @@ import { toast } from "react-toastify";
 import ToastMessage from "../../Toast/toast";
 import Loader from "../../Loader/loader";
 
-const GetRiders = ({ setStage, setSecondLoad, data, setOrderId }) => {
+const GetRiders = ({
+  setStage,
+  setSecondLoad,
+  data,
+  setOrderId,
+  setriderId,
+}) => {
   const [arr, setArr] = useState([]);
   const [bookingId, setBookingId] = useState("");
   const [load1, setLoad1] = useState(true);
@@ -23,6 +29,7 @@ const GetRiders = ({ setStage, setSecondLoad, data, setOrderId }) => {
       setLoad1(false);
       try {
         const res = await getAllAvailableRiders();
+        console.log(res.data.data);
         setArr(res.data.data);
       } catch (error) {
         if (error.response) {
@@ -42,10 +49,11 @@ const GetRiders = ({ setStage, setSecondLoad, data, setOrderId }) => {
     }
   }, []);
   const onClick = async (_id) => {
+    setriderId(_id);
     setSecondLoad(true);
     try {
       const res = await bookARider(_id, bookingId);
-      // console.log(res.data.order._id);
+      console.log(res.data.order._id);
       setOrderId(res.data.order._id);
       setStage("stage5");
       setSecondLoad(false);

@@ -19,6 +19,7 @@ const Option = ({ move, setData, data }) => {
     setBg(1);
     setData((prevState) => ({
       ...prevState,
+      amount: "",
       vehicleCategory: "Bike",
     }));
   };
@@ -41,6 +42,17 @@ const Option = ({ move, setData, data }) => {
       ...prevState,
       distance: value,
     }));
+    data.vehicleCategory === "Bike" &&
+      setData((prevState) => ({
+        ...prevState,
+        amount: value / 10,
+      }));
+    data.vehicleCategory === "Car" &&
+      setData((prevState) => ({
+        ...prevState,
+        amount: value / 7.5,
+      }));
+    // data.vehicleCategory === "Truck" &&
     console.log(data);
     move();
   };
@@ -65,13 +77,13 @@ const Option = ({ move, setData, data }) => {
             </div>
             <div
               className={`${classes.options} ${bg === 2 ? classes.bg : ""}`}
-              // onClick={car}
+              onClick={car}
             >
               <div>
                 <Car />
                 <p>GoDan Car</p>
               </div>
-              <span>coming soon</span>
+              <span>₦ {(value / 7.5)?.toLocaleString()}</span>
             </div>
             <div
               className={`${classes.options} ${bg === 3 ? classes.bg : ""}`}

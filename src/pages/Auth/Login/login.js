@@ -90,6 +90,7 @@ const Login = ({ history, location }) => {
               onChange={(e) => setMail(e.target.value)}
             />
           </label>
+          <br/>
           <label htmlFor="password" className={classes.flexLabel}>
             <Padlock stroke="#ffffff" />
             <span></span>

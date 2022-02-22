@@ -73,7 +73,7 @@ const GetRiders = ({
       {load1 && <Loader />}
       <span className={classes.lineSpan}></span>
 
-      <p>Price charge: ₦ {(data.distance / 10).toLocaleString()}</p>
+      <p>Price charge: ₦ {data.amount.toLocaleString()}</p>
       <div>
         {arr?.map((item) => (
           <Rider {...item} onClick={onClick} />

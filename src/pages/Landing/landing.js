@@ -28,6 +28,7 @@ const Landing = () => {
     distance: undefined,
     paymentMethod: "",
     vehicleCategory: "",
+    amount: undefined,
   });
   const [auth, setAuth] = useState(false);
 

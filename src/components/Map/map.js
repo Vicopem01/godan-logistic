@@ -29,11 +29,11 @@ const SimpleMap = () => {
       mapTypeControlOptions: {
         style: maps.MapTypeControlStyle.HORIZONTAL_BAR,
         position: maps.ControlPosition.TOP_CENTER,
-      //   mapTypeIds: [
-      //     maps.MapTypeId.ROADMAP,
-      //     maps.MapTypeId.SATELLITE,
-      //     maps.MapTypeId.HYBRID,
-      //   ],
+        //   mapTypeIds: [
+        //     maps.MapTypeId.ROADMAP,
+        //     maps.MapTypeId.SATELLITE,
+        //     maps.MapTypeId.HYBRID,
+        //   ],
       },
 
       zoomControl: true,
@@ -71,6 +71,5 @@ const SimpleMap = () => {
   );
 };
 // }
-
 
 export default SimpleMap;

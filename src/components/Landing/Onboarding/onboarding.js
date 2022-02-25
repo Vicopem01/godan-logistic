@@ -1,7 +1,7 @@
 import classes from "./onboarding.module.css";
 import Logo from "../../../assets/images/onboarding/logo.svg";
 import Arrow from "../../../assets/images/onboarding/arrow.svg";
-import Rider from "../../../assets/images/onboarding/rider.svg";
+import Rider from "../../../assets/images/onboarding/rider.webp";
 import Typed from "react-typed";
 
 const Onboarding = ({ onClick }) => {

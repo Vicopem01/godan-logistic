@@ -11,28 +11,23 @@ import Loader from "../Loader/loader";
 import CancelModal from "../CancelRider/cancel";
 import Sound from "../../../assets/audio/orderAccepted.wav";
 
-const Info = ({ onClick, orderId,riderId }) => {
+const Info = ({ onClick, orderId, riderId, history }) => {
   const [data, setData] = useState({});
   const [orderInfo, setOrderInfo] = useState({});
   const [popup, setPopup] = useState(false);
 
   useEffect(async () => {
-    console.log("11111")
     try {
-      console.log("222222")
       const res = await getSingleRider(riderId);
       console.log(res.data);
-      console.log("33333")
       setData(res.data.data);
       timer();
-      console.log("444444")
     } catch (error) {
-      console.log("55555")
       error.response
-      ? toast.error(
-        <ToastMessage
-        text="Error getting orders"
-        message={error.response.data.message}
+        ? toast.error(
+            <ToastMessage
+              text="Error getting orders"
+              message={error.response.data.message}
             />
           )
         : toast.error(
@@ -45,12 +40,16 @@ const Info = ({ onClick, orderId,riderId }) => {
     if (orderInfo?.deliveryStatus === "Awaiting-Pickup") {
       playSound(Sound);
     }
-  }, [orderInfo]);
+  }, []);
   const OrderInfo = async () => {
     try {
       const res = await getSingleOrderInfo(orderId);
-      console.log(res.data.orderHistory);
-      setOrderInfo(res.data.orderHistory);
+      if (res.data.deliveryStatus === "Completed") {
+        history.push("/success");
+      } else {
+        console.log(res.data.orderHistory);
+        setOrderInfo(res.data.orderHistory);
+      }
     } catch (error) {
       error.response
         ? toast.error(
@@ -93,21 +92,31 @@ const Info = ({ onClick, orderId,riderId }) => {
           </div>
           <div className={classes.loading}>
             <div>
-              {orderInfo?.deliveryStatus !== "Pending" && (
-                <p>
-                  Order approved
-                  <br />
-                  Rider is on the way
-                </p>
+              {orderInfo?.deliveryStatus === "Awaiting-Pickup" && (
+                <>
+                  <p>
+                    Order approved
+                    <br />
+                    Rider is on the way
+                  </p>
+                  <div className={classes.loadingiospinnerripplefndlgyjat0w}>
+                    <div className={classes.ldio0cq7zaip2ngg}>
+                      <div></div>
+                      <div></div>
+                    </div>
+                  </div>
+                </>
               )}
-              {orderInfo?.deliveryStatus === "Pending" && (
-                <p>
-                  Please wait...
-                  <br />
-                  Awaiting rider's approval
-                </p>
+              {orderInfo?.deliveryStatus !== "Awaiting-Pickup" && (
+                <>
+                  <p>
+                    Please wait...
+                    <br />
+                    Awaiting rider's approval
+                  </p>
+                  <Loader />
+                </>
               )}
-              <Loader />
             </div>
           </div>
           <span></span>

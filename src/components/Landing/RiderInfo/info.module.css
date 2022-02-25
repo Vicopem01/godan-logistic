@@ -118,7 +118,56 @@
 }
 .share {
   display: flex;
-  /* border-bottom: 1px solid #407bff; */
-  /* border-radius: 5px; */
   padding: 5px;
+}
+
+@keyframes ldio-0cq7zaip2ngg {
+  0% {
+    top: 31px;
+    left: 31px;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 7.5px;
+    left: 7.5px;
+    width: 47px;
+    height: 47px;
+    opacity: 0;
+  }
+}
+.ldio0cq7zaip2ngg div {
+  position: absolute;
+  border-width: 19px;
+  border-style: solid;
+  opacity: 1;
+  border-radius: 50%;
+  animation: ldio-0cq7zaip2ngg 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.ldio0cq7zaip2ngg div:nth-child(1) {
+  border-color: #eab221;
+  animation-delay: 0s;
+}
+.ldio0cq7zaip2ngg div:nth-child(2) {
+  border-color: #407bff;
+  animation-delay: -0.5s;
+}
+.loadingiospinnerripplefndlgyjat0w {
+  width: 81px;
+  height: 81px;
+  display: inline-block;
+  overflow: hidden;
+  background: #f1f2f3;
+}
+.ldio0cq7zaip2ngg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translateZ(0) scale(0.81);
+  backface-visibility: hidden;
+  transform-origin: 0 0; /* see note above */
+}
+.ldio0cq7zaip2ngg div {
+  box-sizing: content-box;
 }

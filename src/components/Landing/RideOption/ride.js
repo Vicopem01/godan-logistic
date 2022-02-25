@@ -14,6 +14,10 @@ const Option = ({ move, setData, data }) => {
   const [select, setSelect] = useState(0);
   const [value, setValue] = useState(null);
 
+  const bikePrice = value / 10 < 400 ? 400 : value / 10;
+
+  const carPrice = value / 7.5 < 500 ? 500 : value / 7.5;
+
   const bike = (evt) => {
     evt.stopPropagation();
     setBg(1);
@@ -45,13 +49,15 @@ const Option = ({ move, setData, data }) => {
     data.vehicleCategory === "Bike" &&
       setData((prevState) => ({
         ...prevState,
-        amount: value / 10,
+        amount: bikePrice,
       }));
+
     data.vehicleCategory === "Car" &&
       setData((prevState) => ({
         ...prevState,
-        amount: value / 7.5,
+        amount: carPrice,
       }));
+
     // data.vehicleCategory === "Truck" &&
     console.log(data);
     move();
@@ -72,7 +78,7 @@ const Option = ({ move, setData, data }) => {
                 <Bike />
                 <p>GoDan Bike</p>
               </div>
-              <p>₦ {(value / 10)?.toLocaleString()}</p>
+              <p>₦ {bikePrice?.toLocaleString()}</p>
               {/* <p>₦ {(data?.distance / 10)?.toLocaleString()}</p> */}
             </div>
             <div
@@ -83,7 +89,7 @@ const Option = ({ move, setData, data }) => {
                 <Car />
                 <p>GoDan Car</p>
               </div>
-              <span>₦ {(value / 7.5)?.toLocaleString()}</span>
+              <span>₦ {carPrice?.toLocaleString()}</span>
             </div>
             <div
               className={`${classes.options} ${bg === 3 ? classes.bg : ""}`}

@@ -13,7 +13,7 @@ export const Avatar = () => (
   </svg>
 );
 
-export const Mail = ({stroke}) => (
+export const Mail = ({ stroke }) => (
   <svg
     width="24"
     height="24"
@@ -53,7 +53,7 @@ export const Tel = () => (
   </svg>
 );
 
-export const Padlock = ({stroke}) => (
+export const Padlock = ({ stroke }) => (
   <svg
     width="27"
     height="24"
@@ -151,5 +151,29 @@ export const Distance = () => (
       fill="#ADCBE3"
       fillOpacity="0.5"
     />
+  </svg>
+);
+
+export const Ball = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    // xmlns:xlink="http://www.w3.org/1999/xlink"
+    style="margin: auto; background: none; display: block; shape-rendering: auto;"
+    width="74px"
+    height="74px"
+    viewBox="0 0 100 100"
+    preserveAspectRatio="xMidYMid"
+  >
+    <circle cx="50" cy="25" r="15" fill="#e15b64">
+      <animate
+        attributeName="cy"
+        dur="0.8928571428571428s"
+        repeatCount="indefinite"
+        calcMode="spline"
+        keySplines="0.45 0 0.9 0.55;0 0.45 0.55 0.9"
+        keyTimes="0;0.5;1"
+        values="25;75;25"
+      ></animate>
+    </circle>
   </svg>
 );

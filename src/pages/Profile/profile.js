@@ -10,8 +10,10 @@ import { getSingleUserInfo, registerNewUser } from "../../services/apiCalls";
 import { toast } from "react-toastify";
 import ToastMessage from "../../components/Toast/toast";
 import Arrow from "../../assets/images/authentication/arrowLeft.svg";
+import { useNavigate } from "react-router-dom";
 
 const Register = ({ history }) => {
+  let navigate = useNavigate();
   const [loader, showLoader] = useState(false);
 
   useEffect(() => {
@@ -38,7 +40,7 @@ const Register = ({ history }) => {
   }, [localStorage.getItem("token")]);
   const handleLogout = () => {
     localStorage.clear();
-    history.push("/");
+    navigate("/");
   };
 
   return (

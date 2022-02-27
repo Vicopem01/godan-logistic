@@ -9,8 +9,10 @@ import { toast } from "react-toastify";
 import ToastMessage from "../../../components/Toast/toast";
 import { useLocation } from "react-router-dom";
 import { verifyUserEmail } from "../../../services/apiCalls";
+import { useNavigate } from "react-router-dom";
 
 const VerifyMail = ({ history }) => {
+  let navigate = useNavigate();
   const [loader, showLoader] = useState(false);
   const { search } = useLocation();
   const token = search.substring(7);
@@ -18,7 +20,7 @@ const VerifyMail = ({ history }) => {
     try {
       await verifyUserEmail(token);
       toast.success("Email verification successful");
-      history.push("/login");
+      navigate("/login");
     } catch (error) {
       if (!error.response) {
         toast.error(

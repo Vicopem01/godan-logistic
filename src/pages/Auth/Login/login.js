@@ -10,8 +10,10 @@ import { login } from "../../../services/apiCalls";
 import Logo from "../../../assets/images/authentication/godan_logo.svg";
 import { Mail, Padlock } from "../../../constant";
 import { useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Login = ({ history, location }) => {
+const Login = () => {
+  let navigate = useNavigate();
   const [param] = useSearchParams();
   const [password, showPassword] = useState(true);
   const [loader, setLoader] = useState(false);
@@ -51,7 +53,7 @@ const Login = ({ history, location }) => {
             setLoader(true);
             const res = await login(data);
             localStorage.setItem("token", res.data.data.token);
-            history.push("/");
+            navigate("/");
           } catch (error) {
             setLoader(false);
             if (error.response) {

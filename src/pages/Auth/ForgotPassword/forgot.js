@@ -10,8 +10,10 @@ import { registerNewUser } from "../../../services/apiCalls";
 import { toast } from "react-toastify";
 import ToastMessage from "../../../components/Toast/toast";
 import Arrow from "../../../assets/images/authentication/arrowLeft.svg";
+import { useNavigate } from "react-router-dom";
 
 const Register = ({ history }) => {
+  let navigate = useNavigate();
   const [loader, showLoader] = useState(false);
   const [focus, setFocus] = useState(0);
   const [email, setEmail] = useState("");
@@ -37,7 +39,7 @@ const Register = ({ history }) => {
         // const res = await registerNewUser(data);
         // console.log(res);
         toast.success("Password reset link sent, Check your inbox");
-        history.push("/login");
+        navigate("/login");
       } catch (error) {
         showLoader(false);
         toast.error(<ToastMessage text="Error" message={error.message} />);
@@ -48,7 +50,7 @@ const Register = ({ history }) => {
   return (
     <main className={classes.main}>
       <div>
-      <Link to="/login">
+        <Link to="/login">
           <img src={Arrow} alt="" />
         </Link>
         <p className="medium-text medium-weight">Reset Password</p>

@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Landing from "./pages/Landing/landing";
 import Profile from "./pages/Profile/profile";
 import Policy from "./pages/Policy/policy";
@@ -11,30 +11,57 @@ import ForgotPassword from "./pages/Auth/ForgotPassword/forgot";
 import Error404 from "./pages/404/404";
 import Success from "./pages/Success/success";
 import { createAutoLogout } from "./services/functions";
+import OrderInfo from "./pages/BookingDetails/details";
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
+const ProtectedRoute = ({ children }) => {
   const validToken = createAutoLogout();
-  if (!validToken) return <Redirect to="/login" />;
-  return <Route {...rest} render={(props) => <Component {...props} />} />;
+  return validToken ? children : <Navigate replace to="/login" />;
 };
 
 const App = () => {
   return (
-    <>
-      <Switch>
-        <Route path="/" exact component={Landing} />
-        <Route path="/register" exact component={Register} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/forgot-password" exact component={ForgotPassword} />
-        <Route path="/auth/email/verify" exact component={Verify} />
-        <Route path="/privacy-policy" exact component={Policy} />
-        <Route path="/about-us" exact component={AboutUs} />
-        <ProtectedRoute path="/profile" exact component={Profile} />
-        <ProtectedRoute path="/history" exact component={History} />
-        <ProtectedRoute path="/success" exact component={Success} />
-        <Route path="/*" exact component={Error404} />
-      </Switch>
-    </>
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/auth/email/verify" element={<Verify />} />
+      <Route path="/privacy-policy" element={<Policy />} />
+      <Route
+        path="/about-us"
+        element={
+          <ProtectedRoute>
+            <AboutUs />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/history"
+        element={
+          <ProtectedRoute>
+            <History />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/success"
+        element={
+          <ProtectedRoute>
+            <Success />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/*" element={<Error404 />} />
+      {/* <ProtectedRoute path="/order-info/:id"  element={<OrderInfo} />/> */}
+    </Routes>
   );
 };
 export default App;

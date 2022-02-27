@@ -1,0 +1,76 @@
+.flexbox {
+  width: 85%;
+  margin: 1rem auto 1rem auto;
+  display: flex;
+  justify-content: space-between;
+}
+.overflow {
+  border-radius: 20px 20px 0px 0px;
+  max-height: 45vh;
+  overflow-y: auto;
+}
+.box {
+  padding: 2rem 1rem 0rem 1rem;
+}
+.subContainer {
+  position: relative;
+  border-radius: 10px;
+  background: #f9fafc;
+  margin-bottom: 30px;
+}
+.subContainer svg {
+  position: absolute;
+  top: 28px;
+  left: 10px;
+}
+.subContainer > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 12px 12px 30px;
+}
+.subContainer > p {
+  padding: 18px 12px 0px 30px;
+  color: #111111;
+  font-size: 18px;
+}
+.places {
+  text-align: left;
+}
+.places p:last-of-type,
+.description {
+  color: #787676;
+  font-size: 14px;
+}
+.userInfo p:last-of-type {
+  color: #407bff;
+}
+.btn {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  margin: auto auto 50px auto;
+}
+.btn button {
+  width: 45%;
+  padding: 12px;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+}
+.btn button:first-of-type {
+  background: #f76363;
+}
+.btn button:last-of-type {
+  background: #407bff;
+}
+.confirm button {
+  display: block;
+  margin: auto auto 2rem auto;
+  width: 70%;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  background: #407bff;
+  color: #fff;
+  font-size: 16px;
+}

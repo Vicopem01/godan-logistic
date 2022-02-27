@@ -1,9 +1,10 @@
 import classes from "./success.module.css";
 import Mail from "../../../assets/images/authentication/mailsuccess.svg";
 import { ButtonBlue } from "../../UI/Button/button";
-import { withRouter } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-const Success = ({ history }) => {
+const Success = () => {
+  let navigate = useNavigate();
   return (
     <div className={classes.container}>
       <div>
@@ -13,12 +14,10 @@ const Success = ({ history }) => {
           Thank you for signing up on Godan, kindly check your email inbox to
           verify your account. See you on the inside 🤭
         </p>
-        <ButtonBlue onClick={() => history.push("/login")}>
-          Go to login
-        </ButtonBlue>
+        <ButtonBlue onClick={() => navigate("/login")}>Go to login</ButtonBlue>
       </div>
     </div>
   );
 };
 
-export default withRouter(Success);
+export default Success;

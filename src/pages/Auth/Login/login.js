@@ -9,15 +9,17 @@ import Loader from "../../../components/UI/Loader/loader";
 import { login } from "../../../services/apiCalls";
 import Logo from "../../../assets/images/authentication/godan_logo.svg";
 import { Mail, Padlock } from "../../../constant";
+import { useSearchParams } from "react-router-dom";
 
 const Login = ({ history, location }) => {
+  const [param] = useSearchParams();
   const [password, showPassword] = useState(true);
   const [loader, setLoader] = useState(false);
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (location.search === "?redirect=fetch-rider") {
+    if (param.get("redirect") === "fetch-rider") {
       toast.error(<ToastMessage text="Please login to continue" />);
     }
   }, []);
@@ -90,7 +92,7 @@ const Login = ({ history, location }) => {
               onChange={(e) => setMail(e.target.value)}
             />
           </label>
-          <br/>
+          <br />
           <label htmlFor="password" className={classes.flexLabel}>
             <Padlock stroke="#ffffff" />
             <span></span>

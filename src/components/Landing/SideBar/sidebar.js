@@ -7,13 +7,15 @@ import Profile from "../../../assets/images/sidebar/profile.svg";
 import About from "../../../assets/images/sidebar/about.svg";
 import Padlock from "../../../assets/images/sidebar/padlock.svg";
 import { ButtonWhite } from "../../UI/Button/button";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getSingleUserInfo } from "../../../services/apiCalls";
 import { toast } from "react-toastify";
 import ToastMessage from "../../Toast/toast";
+import { useNavigate } from "react-router-dom";
 
-const SideBar = ({ sideBar, cancelSidebar, history }) => {
+const SideBar = ({ sideBar, cancelSidebar }) => {
+  let navigate = useNavigate();
   const [data, setData] = useState({});
   useEffect(async () => {
     if (localStorage.getItem("token")) {
@@ -52,9 +54,7 @@ const SideBar = ({ sideBar, cancelSidebar, history }) => {
               {!authentication && (
                 <div>
                   <h4>User</h4>
-                  <p onClick={() => history.push("/login")}>
-                    Sign in to continue
-                  </p>
+                  <p onClick={() => navigate("/login")}>Sign in to continue</p>
                 </div>
               )}
             </div>
@@ -62,7 +62,7 @@ const SideBar = ({ sideBar, cancelSidebar, history }) => {
           {!authentication && (
             <div className={classes.links}>
               <div className={classes.btn}>
-                <ButtonWhite onClick={() => history.push("/login")}>
+                <ButtonWhite onClick={() => navigate("/login")}>
                   Sign in to continue
                 </ButtonWhite>
               </div>
@@ -74,7 +74,7 @@ const SideBar = ({ sideBar, cancelSidebar, history }) => {
                 <img src={Profile} alt="" />
                 <p>Profile</p>
               </Link>
-              <Link>
+              <Link to="#3">
                 <img src={Cart} alt="" />
                 <p>Payments</p>
               </Link>
@@ -95,7 +95,7 @@ const SideBar = ({ sideBar, cancelSidebar, history }) => {
                 <img src={Padlock} alt="" />
                 <p>Privacy Policy</p>
               </Link>
-              <Link className={classes.btn}>
+              <Link to="#3" className={classes.btn}>
                 <ButtonWhite onClick={handlelogout}>Log Out</ButtonWhite>
               </Link>
             </div>
@@ -106,4 +106,4 @@ const SideBar = ({ sideBar, cancelSidebar, history }) => {
     </div>
   );
 };
-export default withRouter(SideBar);
+export default SideBar;

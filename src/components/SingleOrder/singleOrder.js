@@ -1,9 +1,10 @@
 import classes from "./singleOrder.module.css";
 import { Distance } from "../../constant";
+import { Link } from "react-router-dom";
 
-const NewOrder = ({ bookingId, deliveryStatus, createdAt }) => {
+const NewOrder = ({ bookingId, deliveryStatus, createdAt, id }) => {
   return (
-    <div className={classes.box}>
+    <Link className={classes.box} to={`/order-info/${id}`}>
       <div className={classes.subContainer}>
         <Distance />
         <div>
@@ -35,7 +36,7 @@ const NewOrder = ({ bookingId, deliveryStatus, createdAt }) => {
           <p>₦ {bookingId.distance / 10}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 export default NewOrder;

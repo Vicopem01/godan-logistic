@@ -10,8 +10,10 @@ import Share from "../../../assets/images/landing/share.svg";
 import Loader from "../Loader/loader";
 import CancelModal from "../CancelRider/cancel";
 import Sound from "../../../assets/audio/orderAccepted.wav";
+import { useNavigate } from "react-router-dom";
 
-const Info = ({ onClick, orderId, riderId, history }) => {
+const Info = ({ onClick, orderId, riderId }) => {
+  let navigate = useNavigate();
   const [data, setData] = useState({});
   const [orderInfo, setOrderInfo] = useState({});
   const [popup, setPopup] = useState(false);
@@ -41,13 +43,16 @@ const Info = ({ onClick, orderId, riderId, history }) => {
       playSound(Sound);
     }
   }, []);
+
   const OrderInfo = async () => {
     try {
       const res = await getSingleOrderInfo(orderId);
-      if (res.data.deliveryStatus === "Completed") {
-        history.push("/success");
+      if (res.data.orderHistory.deliveryStatus === "Completed") {
+        console.log("doneee");
+        navigate("/success");
       } else {
         console.log(res.data.orderHistory);
+        console.log("not done");
         setOrderInfo(res.data.orderHistory);
       }
     } catch (error) {
@@ -94,17 +99,17 @@ const Info = ({ onClick, orderId, riderId, history }) => {
             <div>
               {orderInfo?.deliveryStatus === "Awaiting-Pickup" && (
                 <>
-                  <p>
+                  <p style={{ textAlign: "center", width: "100vw" }}>
                     Order approved
                     <br />
                     Rider is on the way
                   </p>
-                  <div className={classes.loadingiospinnerripplefndlgyjat0w}>
+                  {/* <div className={classes.loadingiospinnerripplefndlgyjat0w}>
                     <div className={classes.ldio0cq7zaip2ngg}>
                       <div></div>
                       <div></div>
                     </div>
-                  </div>
+                  </div> */}
                 </>
               )}
               {orderInfo?.deliveryStatus !== "Awaiting-Pickup" && (

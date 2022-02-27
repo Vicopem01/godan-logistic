@@ -137,6 +137,7 @@
     opacity: 0;
   }
 }
+
 .ldio0cq7zaip2ngg div {
   position: absolute;
   border-width: 19px;
@@ -158,7 +159,7 @@
   height: 81px;
   display: inline-block;
   overflow: hidden;
-  background: #f1f2f3;
+  background: transparent;
 }
 .ldio0cq7zaip2ngg {
   width: 100%;

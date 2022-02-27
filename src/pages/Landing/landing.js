@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import Map from "../../components/Map/map";
 import Menu from "../../components/Landing/Menu/menu";
 import SideBar from "../../components/Landing/SideBar/sidebar";
@@ -104,7 +104,7 @@ const Landing = () => {
         {stage === "stage4" && (
           <>
             {!auth ? (
-              <Redirect push to="/login?redirect=fetch-rider" />
+              <Navigate replace to="/login?Navigate=fetch-rider" />
             ) : (
               <GetRiders
                 data={data}

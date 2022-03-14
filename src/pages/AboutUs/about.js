@@ -23,7 +23,6 @@ const Policy = () => {
   const [text2, showText2] = useState(false);
   const [text3, showText3] = useState(false);
   const [text4, showText4] = useState(false);
-  const [text5, showText5] = useState(false);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -58,8 +57,8 @@ const Policy = () => {
         <img src={Cover} alt="Cover" />
       </div>
       <p className={classes.about}>
-        Godan Logistics is a logistics company that handles delivery of goods
-        and services from clients to their customers.
+        GoDan is an Ogun state based logistics company that handles delivery of
+        goods and services from clients to their customers.
         <br />
         We liase with Small and Medium business owners by employing learned and
         experienced riders of motorcycles and cars to efficiently deliver and
@@ -88,12 +87,13 @@ const Policy = () => {
           <div>
             <img src={Car} alt="Car" />
           </div>
-          <h4>Car Deliveries</h4>
+          <h4>Car Ride and Hire Service</h4>
           <p>
-            Logistics through cars is most convenient when you want to reach
-            customers within your locality when your goods are heavier than what
-            can be carried by a motorbike or your goods needs someone to tag
-            along to the point of delivery.
+            Hassle free and luxurious car ride services are available in
+            intra-locality regions. Also, car hire services with affordable
+            rates for interstate travels are readily available. Provision of
+            storage facilities to our clients on subscription packages for bulk
+            deliveries.
           </p>
         </div>
         <br />
@@ -176,87 +176,6 @@ const Policy = () => {
           )}
         </div>
       </div>
-
-      {/* <div>
-        <Link to="/">
-          <img src={Arrow} alt="" className={classes.arrow} />
-        </Link>
-
-        <p className="medium-text medium-weight">GoDan Privacy Policy</p>
-      </div>
-      <div className={classes.whitebg}>
-        <h2>About Us</h2>
-        <h4>Taking deliveries a step further...</h4>
-        <p>
-          Godan Logistics is a logistics company that handles deliveries and
-          pick-ups of goods and services of Small and Medium Businesses by
-          employing learned and experienced riders of motorcycles and cars to
-          efficiently deliver and pick up at very affordable and cost efficient
-          prices.
-          <br />
-          <br />
-          -Stress free Delivery
-          <br />
-          <br />
-          -Fast and prompt
-          <br />
-          <br />
-          -Safe and affordable
-          <br />
-          <br />
-          -Experience luxurious rides with less
-          <br />
-          <br />
-          -Our riders are just a tap away from you
-          <br /> */}
-      {/* User friendly webapp for easy access and convenience Register as a
-          rider,be your own boss////....(link) # Doorstep pickup/Delivery We
-          pick up parcels from clients with our dispatch bikes or truck and
-          deliver to locations within Remo, Ogun state Nigeria. # Request a ride
-          Request a car ride through our user-friendly webapp. #Car Hire We
-          offer car hire services for interstate travels or for special events
-          #Track your ride/order Track the progress of rides and track parcels
-          sent out at every point in transit #subscription package/storage
-          facility We provide storage facilities to our clients on subscription
-          packages for their bulk deliveries. (Contact details) Fb/IG:
-          godan_logistics Mail: info@godanlogistics.com Address: 10 Temitope
-          house, ogunyanwo street Sagamu, Ogun state ☎️: 09033339578 Webapp: */}
-      {/* </p>
-        <div className={classes.socials}>
-          <div>
-            <img src={Phone} alt="" />
-            <span>
-              <a href="tel:+2349033339578">+2349033339578</a>
-            </span>
-          </div>
-          <div>
-            <img src={Facebook} alt="" />
-            <span>
-              <a href="https://facebook.com/godan_logistics">godan_logistics</a>
-            </span>
-          </div>
-          <div>
-            <img src={Instagram} alt="" />
-            <span>
-              <a href="https://instagram.com/godan_logistics">
-                godan_logistics
-              </a>
-            </span>
-          </div>
-          <div>
-            <img src={Mail} alt="" />
-            <span>
-              <a href="mailto:info@godanlogistics.com">
-                info@godanlogistics.com
-              </a>
-            </span>
-          </div>
-          <div className={classes.location}>
-            <img src={Location} alt="" />
-            <span>10 Temitope house, Ogunyanwo street Sagamu, Ogun state</span>
-          </div>
-        </div>
-      </div>*/}
       <h3>Still got questions?</h3>
       <p className={classes.about}>Get in touch with us!</p>
 

@@ -8,33 +8,17 @@ import About from "../../../assets/images/sidebar/about.svg";
 import Padlock from "../../../assets/images/sidebar/padlock.svg";
 import { ButtonWhite } from "../../UI/Button/button";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { getSingleUserInfo } from "../../../services/apiCalls";
-import { toast } from "react-toastify";
-import ToastMessage from "../../Toast/toast";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../../../context";
 
 const SideBar = ({ sideBar, cancelSidebar }) => {
   let navigate = useNavigate();
-  const [data, setData] = useState({});
-  useEffect(async () => {
-    if (localStorage.getItem("token")) {
-      try {
-        const res = await getSingleUserInfo();
-        setData(res.data.data);
-      } catch (error) {
-        toast.error(
-          <ToastMessage
-            text="Error geting information"
-            message={error.message}
-          />
-        );
-      }
-    }
-  }, []);
+  let data = useContext(UserContext);
+
   const authentication = localStorage.getItem("token");
   const handlelogout = () => {
-    localStorage.removeItem("token");
+    localStorage.clear();
     window.location.reload();
   };
   return (

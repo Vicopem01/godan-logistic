@@ -37,6 +37,16 @@ export const getAllAvailableRiders = async () => {
   });
   return response;
 };
+export const checkOrders = async () => {
+  const response = await axios({
+    method: "GET",
+    url: `${baseUrl}/user/auth/unsettled/orders`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  return response;
+};
 
 export const getSingleRider = async (id) => {
   const response = await axios({
@@ -107,4 +117,3 @@ export const getSingleOrderInfo = async (id) => {
   });
   return response;
 };
-

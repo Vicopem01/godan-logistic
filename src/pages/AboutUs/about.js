@@ -57,7 +57,7 @@ const Policy = () => {
         <img src={Cover} alt="Cover" />
       </div>
       <p className={classes.about}>
-        GoDan is an Ogun state based logistics company that handles delivery of
+        GoDan is an Ogun state based logistics company that handles \ delivery of
         goods and services from clients to their customers.
         <br />
         We liase with Small and Medium business owners by employing learned and

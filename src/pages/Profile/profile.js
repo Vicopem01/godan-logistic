@@ -9,7 +9,7 @@ import { UserContext } from "../../context";
 
 const Register = () => {
   let navigate = useNavigate();
-  let data = useContext(UserContext);
+  let { data } = useContext(UserContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);

@@ -10,12 +10,11 @@ import { ButtonWhite } from "../../UI/Button/button";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { UserContext } from "../../../context";
+import { UserContext, AppData } from "../../../context";
 
 const SideBar = ({ sideBar, cancelSidebar }) => {
   let navigate = useNavigate();
-  let data = useContext(UserContext);
-
+  let { user } = useContext(UserContext);
   const authentication = localStorage.getItem("token");
   const handlelogout = () => {
     localStorage.clear();
@@ -25,14 +24,13 @@ const SideBar = ({ sideBar, cancelSidebar }) => {
     <div className={`${classes.container} ${sideBar && classes.visible}`}>
       <div className={classes.main}>
         <div className={classes.subMain}>
-          {/* <img src={Cancel} alt="" /> */}
           <div className={classes.profile}>
             <div>
               <img src={ProfilePicture} alt="" />
               {authentication && (
                 <div className={classes.profileInfo}>
-                  <h4>{data?.fullName}</h4>
-                  <p>{data?.email}</p>
+                  <h4>{user?.fullName}</h4>
+                  <p>{user?.email}</p>
                 </div>
               )}
               {!authentication && (

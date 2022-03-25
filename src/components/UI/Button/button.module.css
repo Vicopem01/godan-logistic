@@ -8,6 +8,7 @@
   position: relative;
   font-family: var(--poppins);
   font-size: 16px;
+  cursor: pointer;
 }
 .btn_grey {
   background: rgba(173, 203, 227, 0.2);

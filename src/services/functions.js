@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { Navigate } from "react-router";
 
 export const phoneNumberCheck = (value) => {
   const regex = /^[0-9]{11}/;
@@ -33,4 +34,10 @@ export const createAutoLogout = () => {
       data,
     };
   }
+};
+
+
+export const ProtectedRoute = ({ children }) => {
+  const validToken = createAutoLogout();
+  return validToken ? children : <Navigate replace to="/login" />;
 };

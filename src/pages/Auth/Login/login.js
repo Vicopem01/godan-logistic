@@ -1,7 +1,7 @@
 import classes from "./login.module.css";
 import { ButtonWhite } from "../../../components/UI/Button/button";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { emailCheck } from "../../../services/functions";
 import { toast } from "react-toastify";
 import ToastMessage from "../../../components/Toast/toast";
@@ -11,15 +11,18 @@ import Logo from "../../../assets/images/authentication/godan_logo.svg";
 import { Mail, Padlock } from "../../../constant";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../context";
 
 const Login = () => {
   let navigate = useNavigate();
+  let { setData } = useContext(UserContext);
   const [param] = useSearchParams();
   const [password, showPassword] = useState(true);
   const [loader, setLoader] = useState(false);
   const [mail, setMail] = useState("");
   const [pass, setPass] = useState("");
   useEffect(() => {
+    localStorage.clear();
     window.scrollTo(0, 0);
     if (param.get("redirect") === "fetch-rider") {
       toast.error(<ToastMessage text="Please login to continue" />);
@@ -42,7 +45,7 @@ const Login = () => {
       } else {
         if (pass.length < 6) {
           toast.error(
-            <ToastMessage text="Error" message="6 charater password mininum" />
+            <ToastMessage text="Error" message="6 character password mininum" />
           );
         } else {
           let data = {

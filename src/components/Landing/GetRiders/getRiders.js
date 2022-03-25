@@ -4,32 +4,28 @@ import {
   getAllAvailableRiders,
   bookARider,
   createNewBooking,
+  getSingleRider,
 } from "../../../services/apiCalls";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import ToastMessage from "../../Toast/toast";
 import Loader from "../../Loader/loader";
+import { useNavigate } from "react-router-dom";
 
-const GetRiders = ({
-  setStage,
-  setSecondLoad,
-  data,
-  setOrderId,
-  setriderId,
-}) => {
+const GetRiders = ({ data }) => {
+  let navigate = useNavigate();
+
   const [arr, setArr] = useState([]);
   const [bookingId, setBookingId] = useState("");
   const [load1, setLoad1] = useState(true);
   const [load2, setLoad2] = useState(true);
   useEffect(async () => {
     try {
-      console.log(data);
       const res = await createNewBooking(data);
       setBookingId(res.data.booking._id);
       setLoad1(false);
       try {
         const res = await getAllAvailableRiders();
-        console.log(res.data.data);
         setArr(res.data.data);
       } catch (error) {
         if (error.response) {
@@ -48,17 +44,11 @@ const GetRiders = ({
       setLoad1(false);
     }
   }, []);
-  const onClick = async (_id) => {
-    setriderId(_id);
-    setSecondLoad(true);
+  const onClick = async (riderId) => {
     try {
-      const res = await bookARider(_id, bookingId);
-      console.log(res.data.order._id);
-      setOrderId(res.data.order._id);
-      setStage("stage5");
-      setSecondLoad(false);
+      const res = await bookARider(riderId, bookingId);
+      navigate(`/stage4/?_id=${riderId}&orderId=${res.data.order._id}`);
     } catch (error) {
-      setSecondLoad(false);
       if (error.response) {
         toast.error(
           <ToastMessage text="Error" message={error.response.data.message} />
@@ -75,8 +65,8 @@ const GetRiders = ({
 
       <p>Price charge: ₦ {data.amount.toLocaleString()}</p>
       <div>
-        {arr?.map((item) => (
-          <Rider {...item} onClick={onClick} />
+        {arr?.map((item, index) => (
+          <Rider {...item} onClick={onClick} index={index} />
         ))}
         {load2 && (
           <div className={classes.loader}>

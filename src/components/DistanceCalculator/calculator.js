@@ -7,6 +7,7 @@ import Loader from "../Loader/loader";
 const Calculator = ({ google, data, setValue }) => {
   const [load, setLoad] = useState(true);
   const service = new google.maps.DistanceMatrixService();
+
   const request = {
     origins: [data.startDestination],
     destinations: [data.endDestination],
@@ -15,13 +16,24 @@ const Calculator = ({ google, data, setValue }) => {
     avoidHighways: false,
     avoidTolls: false,
   };
+  window.onbeforeunload = (event) => {
+    const e = event || window.event;
+    // Cancel the event
+    e.preventDefault();
+    if (e) {
+      e.returnValue = ""; // Legacy method for cross browser support
+    }
+    return ""; // Legacy method for cross browser support
+  };
   useEffect(async () => {
     try {
       const res = await service.getDistanceMatrix(request);
+      console.log(res);
       setValue(res.rows[0].elements[0].distance.value);
       console.log(res.rows[0].elements[0].distance.value);
       setLoad(false);
     } catch (error) {
+      console.log(error);
       setLoad(false);
       error.response
         ? toast.error(

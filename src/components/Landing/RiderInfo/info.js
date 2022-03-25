@@ -10,19 +10,27 @@ import Share from "../../../assets/images/landing/share.svg";
 import Loader from "../Loader/loader";
 import CancelModal from "../CancelRider/cancel";
 import Sound from "../../../assets/audio/orderAccepted.wav";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
-const Info = ({ onClick, orderId, riderId }) => {
+const Info = ({ onClick }) => {
+  let [param] = useSearchParams();
+  const orderId = param.get("orderId");
+  const riderId = param.get("_id");
+  
   let navigate = useNavigate();
   const [data, setData] = useState({});
   const [orderInfo, setOrderInfo] = useState({});
   const [popup, setPopup] = useState(false);
+  const timer = () => {
+    setInterval(function () {
+      OrderInfo();
+    }, 10000);
+  };
 
   useEffect(async () => {
     try {
-      const res = await getSingleRider(riderId);
-      console.log(res.data);
-      setData(res.data.data);
+      const response = await getSingleRider(riderId);
+      setData(response.data.data);
       timer();
     } catch (error) {
       error.response
@@ -48,11 +56,8 @@ const Info = ({ onClick, orderId, riderId }) => {
     try {
       const res = await getSingleOrderInfo(orderId);
       if (res.data.orderHistory.deliveryStatus === "Completed") {
-        console.log("doneee");
         navigate("/success");
       } else {
-        console.log(res.data.orderHistory);
-        console.log("not done");
         setOrderInfo(res.data.orderHistory);
       }
     } catch (error) {
@@ -68,11 +73,7 @@ const Info = ({ onClick, orderId, riderId }) => {
           );
     }
   };
-  const timer = () => {
-    setInterval(function () {
-      OrderInfo();
-    }, 10000);
-  };
+
   return (
     <div className={classes.background}>
       <div className={classes.main}>

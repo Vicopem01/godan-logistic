@@ -1,8 +1,8 @@
 import classes from "./rider.module.css";
 
-const Rider = ({ avatar, fullName, vehiclePlateNumber, onClick, _id }) => {
+const Rider = ({ avatar, fullName, vehiclePlateNumber, onClick, _id , index}) => {
   return (
-    <div className={classes.flexBox} onClick={() => onClick(_id)}>
+    <div className={classes.flexBox} onClick={() => onClick(_id)} key={index}>
       <div className={classes.box}>
         <img src={avatar} alt="" />
         <div className={classes.info}>

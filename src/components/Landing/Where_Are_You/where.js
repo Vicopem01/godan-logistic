@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import ToastMessage from "../../Toast/toast";
 import geolocation from "geolocation";
 import Geocode from "react-geocode";
+import { Navigate } from "react-router-dom";
 
 const Where = ({ moveStep1, setLoad, setData, data, locationArr }) => {
   const place = [];
@@ -17,33 +18,44 @@ const Where = ({ moveStep1, setLoad, setData, data, locationArr }) => {
     return new Promise((resolve, reject) => {
       geolocation.getCurrentPosition(function (err, position) {
         if (err) {
-          setLoad(false);
-          toast.error(<ToastMessage text="Error" message={err.message} />);
-        }
-        Geocode.fromLatLng(
-          position.coords.latitude,
-          position.coords.longitude
-        ).then(
-          (response) => {
-            const address = response.results[0].formatted_address;
-            setData(prevState => ({
-              ...prevState,
-              startDestination: address,
-            }));
-            resolve(response);
-          },
-          (error) => {
-            console.error("error");
-            reject(error);
+          console.log(err);
+          if (err.code === 1) {
+            showError();
+          } else {
+            setLoad(false);
+            toast.error(<ToastMessage text="Error" message={err.message} />);
+            <Navigate replace to="/stage2" />;
           }
-        );
+        } else {
+          Geocode.fromLatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          ).then(
+            (response) => {
+              const address = response.results[0].formatted_address;
+              setData((prevState) => ({
+                ...prevState,
+                startDestination: address,
+              }));
+              resolve(response);
+            },
+            (error) => {
+              console.error("error");
+              reject(error);
+            }
+          );
+        }
       });
     });
   };
 
+  const showError = () => {
+    toast.error("User denied location permission");
+    moveStep1();
+  };
   const getLocation = async () => {
     setLoad(true);
-    const res = await getCoords();
+    await getCoords();
     setLoad(false);
     moveStep1();
   };

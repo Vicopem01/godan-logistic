@@ -2,7 +2,7 @@ import GoogleMapReact from "google-map-react";
 
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
-const SimpleMap = () => {
+const Map = () => {
   const mapOptions = (maps) => {
     return {
       streetViewControl: false,
@@ -72,4 +72,4 @@ const SimpleMap = () => {
 };
 // }
 
-export default SimpleMap;
+export default Map;

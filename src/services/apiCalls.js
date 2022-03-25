@@ -95,6 +95,17 @@ export const bookARider = async (riderId, bookingId) => {
   });
   return response;
 };
+export const payForOrder = async (data) => {
+  const response = await axios({
+    method: "PUT",
+    url: `${baseUrl}/user/auth/pay-for-ride`,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    data: data,
+  });
+  return response;
+};
 
 export const getUserOrderHistory = async () => {
   const response = await axios({

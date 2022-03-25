@@ -13,13 +13,14 @@ const SlideUp = ({ show, onClick, onClick2, setData, data }) => {
   };
 
   const setEnd = (e) => {
+    localStorage.setItem("endDestination", e.label);
     setData((prevState) => ({
       ...prevState,
       endDestination: e.label,
     }));
   };
   const addStart = (e) => {
-    console.log(e);
+    localStorage.setItem("startDestination", e.label);
     setData((prevState) => ({
       ...prevState,
       startDestination: e.label,

@@ -1,26 +1,19 @@
 import { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
 import Map from "../../components/Map/map";
 import Menu from "../../components/Landing/Menu/menu";
 import SideBar from "../../components/Landing/SideBar/sidebar";
 import Where from "../../components/Landing/Where_Are_You/where";
-import WhereTo from "../../components/Landing/WhereTo/whereTo";
-import SlideUp from "../../components/Landing/SlideUp/slideUp";
-import Option from "../../components/Landing/RideOption/ride";
-import GetRiders from "../../components/Landing/GetRiders/getRiders";
 import { toast } from "react-toastify";
 import ToastMessage from "../../components/Toast/toast";
-import RiderInfo from "../../components/Landing/RiderInfo/info";
-import { createAutoLogout } from "../../services/functions";
 import Loader from "../../components/Loader/loader";
 import Onboarding from "../../components/Landing/Onboarding/onboarding";
+import { useNavigate } from "react-router-dom";
 
 const Landing = () => {
+  let navigate = useNavigate();
   const [sideBar, setSideBar] = useState(false);
   const [stage, setStage] = useState("stage0");
-  const [show, setShow] = useState(false);
-  const [orderId, setOrderId] = useState("");
-  const [riderId, setriderId] = useState("");
+
   const [load, setLoad] = useState(false);
   const [data, setData] = useState({
     startDestination: "",
@@ -30,12 +23,7 @@ const Landing = () => {
     vehicleCategory: "",
     amount: undefined,
   });
-  const [auth, setAuth] = useState(false);
 
-  useEffect(async () => {
-    const res = await createAutoLogout();
-    setAuth(res);
-  }, []);
   useEffect(() => {
     if (localStorage.getItem("token")) {
       setStage("stage1");
@@ -68,68 +56,8 @@ const Landing = () => {
               setLoad={setLoad}
               data={data}
               setData={setData}
-              moveStep1={() => setStage("stage2")}
+              moveStep1={() => navigate("/stage2")}
             />
-          </>
-        )}
-
-        {stage === "stage2" && (
-          <>
-            <Map />
-            <Menu onClick={() => setSideBar(true)} />
-            <SideBar
-              sideBar={sideBar}
-              cancelSidebar={() => setSideBar(false)}
-            />
-            <WhereTo onClick={() => setShow(true)} />
-            <SlideUp
-              show={show}
-              setData={setData}
-              onClick={() => setShow(false)}
-              onClick2={fillAddress}
-              data={data}
-            />
-          </>
-        )}
-        {stage === "stage3" && (
-          <>
-            <Option
-              move={() => setStage("stage4")}
-              setData={setData}
-              data={data}
-            />
-            <Map />
-          </>
-        )}
-        {stage === "stage4" && (
-          <>
-            {!auth ? (
-              <Navigate replace to="/login?Navigate=fetch-rider" />
-            ) : (
-              <GetRiders
-                data={data}
-                setStage={setStage}
-                setSecondLoad={setLoad}
-                setOrderId={setOrderId}
-                setriderId={setriderId}
-              />
-            )}
-            <Map />
-          </>
-        )}
-        {stage === "stage5" && (
-          <>
-            <Menu onClick={() => setSideBar(true)} />
-            <SideBar
-              sideBar={sideBar}
-              cancelSidebar={() => setSideBar(false)}
-            />
-            <RiderInfo
-              onClick={() => setStage("stage4")}
-              orderId={orderId}
-              riderId={riderId}
-            />
-            <Map />
           </>
         )}
       </div>

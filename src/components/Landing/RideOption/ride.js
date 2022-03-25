@@ -7,7 +7,7 @@ import { ButtonGrey, ButtonBlue } from "../../UI/Button/button";
 import Payment from "../PaymentOption/payment";
 import Calculator from "../../DistanceCalculator/calculator";
 
-const Option = ({ move, setData, data }) => {
+const   Option = ({ move, setData, data }) => {
   const [bg, setBg] = useState(0);
   const [payment, setPayment] = useState(false);
   const [option, setOption] = useState("");

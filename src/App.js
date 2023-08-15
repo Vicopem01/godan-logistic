@@ -11,7 +11,7 @@ import Verify from "./pages/Auth/Verify/verify";
 import ForgotPassword from "./pages/Auth/ForgotPassword/forgot";
 import Error404 from "./pages/404/404";
 import Success from "./pages/Success/success";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { checkOrders, getSingleUserInfo } from "./services/apiCalls";
 import { toast } from "react-toastify";
 import ToastMessage from "./components/Toast/toast";
